@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "PaymentsViewController.h"
-@interface SignupOrResetPasswordViewcontroller : UIViewController <UITextFieldDelegate>{
+#import "CallUsViewcontroller.h"
+#import "User.h"
+#import "MBProgressHUD.h"
+@interface SignupOrResetPasswordViewcontroller : UIViewController <UITextFieldDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>{
     BOOL passwordShown;
+    NSMutableDictionary * responseDict;
+    User *data;
 }
+@property (strong, nonatomic) NSMutableData *responseData;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 - (IBAction)showPasswordBtnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *showPasswordBtn;
-
+- (IBAction)helpBtnAction:(id)sender;
 - (IBAction)createAccountBtnAction:(id)sender;
 @end

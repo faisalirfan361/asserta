@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		03656A29A6FD2730D84D44F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE18580F939605D0F3B02307 /* libPods.a */; };
+		183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88261CF06AD50023102B /* CallUsViewcontroller.m */; };
+		183B882D1CF0B3F30023102B /* DHSidebarLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */; };
+		183B882E1CF0B3F30023102B /* DHSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B882C1CF0B3F30023102B /* DHSidebarViewController.m */; };
+		183B88321CF0EE690023102B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88311CF0EE690023102B /* User.m */; };
 		18569B041CE914B9004FFFC1 /* ValidateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18569B031CE914B9004FFFC1 /* ValidateUserViewController.m */; };
 		18569B061CE914F0004FFFC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18569B051CE914F0004FFFC1 /* QuartzCore.framework */; };
 		18569B091CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18569B081CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m */; };
@@ -28,6 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183B88241CF052140023102B /* dejavu-sans.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dejavu-sans.bold.ttf"; sourceTree = "<group>"; };
+		183B88251CF06AD50023102B /* CallUsViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallUsViewcontroller.h; sourceTree = "<group>"; };
+		183B88261CF06AD50023102B /* CallUsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallUsViewcontroller.m; sourceTree = "<group>"; };
+		183B88291CF0B3F30023102B /* DHSidebarLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSidebarLayoutView.h; sourceTree = "<group>"; };
+		183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHSidebarLayoutView.m; sourceTree = "<group>"; };
+		183B882B1CF0B3F30023102B /* DHSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSidebarViewController.h; sourceTree = "<group>"; };
+		183B882C1CF0B3F30023102B /* DHSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHSidebarViewController.m; sourceTree = "<group>"; };
+		183B88301CF0EE690023102B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		183B88311CF0EE690023102B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		18569B021CE914B9004FFFC1 /* ValidateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateUserViewController.h; sourceTree = "<group>"; };
 		18569B031CE914B9004FFFC1 /* ValidateUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateUserViewController.m; sourceTree = "<group>"; };
 		18569B051CE914F0004FFFC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -71,6 +84,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183B88281CF0B3F30023102B /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				183B88291CF0B3F30023102B /* DHSidebarLayoutView.h */,
+				183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */,
+				183B882B1CF0B3F30023102B /* DHSidebarViewController.h */,
+				183B882C1CF0B3F30023102B /* DHSidebarViewController.m */,
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
+		183B882F1CF0EE3C0023102B /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				183B88301CF0EE690023102B /* User.h */,
+				183B88311CF0EE690023102B /* User.m */,
+			);
+			path = Singleton;
+			sourceTree = "<group>";
+		};
 		18569B101CEA6E73004FFFC1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +129,8 @@
 				18569B0B1CE92491004FFFC1 /* UserSignInViewController.m */,
 				18569B0D1CE92501004FFFC1 /* PaymentsViewController.h */,
 				18569B0E1CE92501004FFFC1 /* PaymentsViewController.m */,
+				183B88251CF06AD50023102B /* CallUsViewcontroller.h */,
+				183B88261CF06AD50023102B /* CallUsViewcontroller.m */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -121,6 +156,8 @@
 		18C3CA621CE4F9AF00D17136 /* medEcash */ = {
 			isa = PBXGroup;
 			children = (
+				183B882F1CF0EE3C0023102B /* Singleton */,
+				183B88281CF0B3F30023102B /* Side Menu */,
 				189813451CE4FD2700F7A27A /* View Controller */,
 				18C3CA661CE4F9AF00D17136 /* AppDelegate.h */,
 				18C3CA671CE4F9AF00D17136 /* AppDelegate.m */,
@@ -147,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				18E749DE1CEFA81D00C4B99D /* DejaVuSans.ttf */,
+				183B88241CF052140023102B /* dejavu-sans.bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -282,12 +320,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18569B091CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m in Sources */,
+				183B882E1CF0B3F30023102B /* DHSidebarViewController.m in Sources */,
 				18569B0C1CE92491004FFFC1 /* UserSignInViewController.m in Sources */,
 				189813481CE4FD3500F7A27A /* VerificationViewController.m in Sources */,
 				18C3CA681CE4F9AF00D17136 /* AppDelegate.m in Sources */,
+				183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */,
+				183B88321CF0EE690023102B /* User.m in Sources */,
 				18C3CA651CE4F9AF00D17136 /* main.m in Sources */,
 				18569B0F1CE92501004FFFC1 /* PaymentsViewController.m in Sources */,
 				18569B041CE914B9004FFFC1 /* ValidateUserViewController.m in Sources */,
+				183B882D1CF0B3F30023102B /* DHSidebarLayoutView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

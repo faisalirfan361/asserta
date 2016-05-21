@@ -14,14 +14,23 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FontasticIcons (0.5.0)
+  - JCDialPad (0.1.1):
+    - libPhoneNumber-iOS
+  - libPhoneNumber-iOS (0.8.12)
   - MBProgressHUD (0.9.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - FontasticIcons
+  - JCDialPad
   - MBProgressHUD (~> 0.9.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FontasticIcons: f20740bf8f1d3565c312f1c3b9806339212b58aa
+  JCDialPad: d977d1ff76eaaa1939c5f3b8882937094e093b3d
+  libPhoneNumber-iOS: 3f1889b70403cf7848c0e4136780a0d0aef9016d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
 
 COCOAPODS: 0.38.2

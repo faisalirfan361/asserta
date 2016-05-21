@@ -14,6 +14,7 @@
     passwordShown=NO;
     self.userNameTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    data = [User sharedManager];
 }
 - (IBAction)showPasswordBtnAction:(id)sender {
     
@@ -35,8 +36,90 @@
     return NO;
 }
 - (IBAction)createAccountBtnAction:(id)sender {
+//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    PaymentsViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"paymentsVC"];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
+    
+    
+    /// 86db5a88975755f76bd733533fa229fe661abf6d
+    if ([self.userNameTextField.text length]!=0 || [self.passwordTextField.text length]!=0) {
+[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/authentication"]];
+    
+    NSDictionary *parametersDictionary = @{
+                                           @"client_id": @"asdf1234",
+                                        @"device_uid":data.devicId,
+                                           @"enrollment_code":data.token,
+                                           @"usn":self.userNameTextField.text,
+                                           @"pwd":self.passwordTextField.text
+                                           };
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+    
+    
+}
+
+else {
+    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Username or Password can not be empty." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    [alert show];
+    
+}
+
+
+
+
+}
+- (IBAction)helpBtnAction:(id)sender {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    PaymentsViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"paymentsVC"];
+    CallUsViewcontroller *vc =[storyboard instantiateViewControllerWithIdentifier:@"CallUsVC"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.responseData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+    NSLog(@"%@",error.localizedDescription);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError * error;
+    NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    NSLog(@"response data - %@", responseStr);
+    responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if ([responseStr isEqualToString:@"\"Please specify another USN\""]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+        
+    }
+    else if (responseDict) {
+
+        
+        
+    }
+    
+    
+    
+}
+
 @end

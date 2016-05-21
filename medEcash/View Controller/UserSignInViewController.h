@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PaymentsViewController.h"
+#import "CallUsViewcontroller.h"
 @interface UserSignInViewController : UIViewController <UITextFieldDelegate>{
     BOOL passwordShown;
 }
@@ -16,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *showPasswordTickBtn;
 - (IBAction)showPasswordTickBtnAction:(id)sender;
 - (IBAction)signInBtnAction:(id)sender;
-
+- (IBAction)helpBtnAction:(id)sender;
 @end

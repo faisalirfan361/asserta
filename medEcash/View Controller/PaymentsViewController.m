@@ -23,9 +23,8 @@
     }
     for(int i=0; i<5; i++)
     {
-        [expandCellsArray addObject:@"Expand"];
+        [expandCellsArray addObject:@"Collapse"];
     }
-
 
 }
 #pragma mark - Table view data source
@@ -73,7 +72,7 @@
         UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
         numberLbl.text=@"";
         UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
-        [expandBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [expandBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         
         // handeling check uncheck buttons
         
@@ -121,10 +120,10 @@
        else
         [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
         
-//        if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
-//            [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
-//        else
-//            [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
+       if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
+            [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
+       else
+            [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
         
         
     
@@ -162,11 +161,11 @@
     if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
     {
         
-        return 125;
+        return 100;
     }
     else
     {
-        return 70;
+        return 58;
         
     }
     }
@@ -197,7 +196,7 @@
 }
 - (void) collapseExpandButtonTap:(id) sender
 {
-    //UIButton *button = (UIButton *)sender;
+    UIButton *button = (UIButton *)sender;
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint]; //Let's assume that you have only one section and button tags directly correspond to rows of your cells.
     //expandedCells is a mutable set declared in your interface section or private class extensiont
@@ -206,7 +205,7 @@
         
         [expandCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Collapse"];
         // [button backgroun:[UIImage imageNamed:@"expand"] forState:UIControlStateNormal];
-        //[button setBackgroundImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
     }
@@ -214,7 +213,7 @@
     {
     
         [expandCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Expand"];
-       // [button setBackgroundImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
     }

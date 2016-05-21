@@ -40,4 +40,9 @@
     [textField resignFirstResponder];
     return NO;
 }
+- (IBAction)helpBtnAction:(id)sender {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CallUsViewcontroller *vc =[storyboard instantiateViewControllerWithIdentifier:@"CallUsVC"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end
