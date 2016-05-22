@@ -12,9 +12,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     passwordShown=NO;
+    UIColor * color = [UIColor colorWithRed:233.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1.0];
     self.userNameTextField.delegate = self;
     self.passwordTextField.delegate = self;
     data = [User sharedManager];
+    CALayer *border = [CALayer layer];
+    CGFloat borderWidth = 2;
+    border.borderColor = color.CGColor;
+    border.frame = CGRectMake(0, self.userNameTextField.frame.size.height - borderWidth, self.userNameTextField.frame.size.width, self.userNameTextField.frame.size.height);
+    border.borderWidth = borderWidth;
+    [self.userNameTextField.layer addSublayer:border];
+    self.userNameTextField.layer.masksToBounds = YES;
+    
+    CALayer *border1 = [CALayer layer];
+    CGFloat borderWidth1 = 2;
+    border1.borderColor = color.CGColor;
+    border1.frame = CGRectMake(0, self.passwordTextField.frame.size.height - borderWidth1, self.passwordTextField.frame.size.width, self.userNameTextField.frame.size.height);
+    border1.borderWidth = borderWidth1;
+    [self.passwordTextField.layer addSublayer:border1];
+    self.passwordTextField.layer.masksToBounds = YES;
+
 }
 - (IBAction)showPasswordBtnAction:(id)sender {
     

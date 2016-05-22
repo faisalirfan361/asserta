@@ -12,7 +12,7 @@
     NSMutableArray * dataArray;
     NSMutableArray * selectedCellsArray;
     NSMutableArray * expandCellsArray;
-    
+    BOOL isSelectedAll;
 
 }
 - (IBAction)menuBtnAction:(id)sender;

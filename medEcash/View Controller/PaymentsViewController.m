@@ -15,7 +15,7 @@
     
     selectedCellsArray = [[NSMutableArray alloc]init];
     expandCellsArray = [[NSMutableArray alloc]init];
-    
+    isSelectedAll = NO;
     // setting all unchecks initially
     for(int i=0; i<5; i++)
     {
@@ -25,7 +25,7 @@
     {
         [expandCellsArray addObject:@"Collapse"];
     }
-
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 #pragma mark - Table view data source
 
@@ -52,42 +52,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
+        
     
-    
-    if (indexPath.row == 0) {
-        // Display recipe in the table cell
-        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
-        payToLbl.text = @"";
-        
-        UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
-        UILabel *mainTitleLbk = (UILabel *)[cell viewWithTag:102];
-        mainTitleLbk.text=@"Select All";
-        mainTitleLbk.textColor = [UIColor colorWithRed:157.0/255.0 green:54.0/255.0 blue:47.0/255.0 alpha:1.0];
-        UILabel *subTitleLbk = (UILabel *)[cell viewWithTag:103];
-        subTitleLbk.text=@"";
-        
-        UILabel *addressLbl = (UILabel *)[cell viewWithTag:104];
-        addressLbl.text=@"";
-    
-        UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
-        numberLbl.text=@"";
-        UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
-        [expandBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        
-        // handeling check uncheck buttons
-        
-        
-        if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
-            [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-        else
-            [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        
-        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else {
-        
-        
-        
         // Display recipe in the table cell
         UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
         payToLbl.text = @"Pay To";
@@ -129,7 +95,7 @@
     
        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    }
+
     
     return cell;
 }
@@ -143,20 +109,18 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-   
+    UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
+[selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
     return cell.contentView;
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 70.0;
+    return 110.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 60;
-    }
-    else {
+    
         
     if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
     {
@@ -168,7 +132,7 @@
         return 58;
         
     }
-    }
+    
     return 0;
 }
 -(void)checkBtnClicked:(id)sender
@@ -220,5 +184,49 @@
 }
 - (IBAction)menuBtnAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)selectAll:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.hidden = YES;
+    if (isSelectedAll) {
+        isSelectedAll =NO;
+        [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+        for(int i=0; i<selectedCellsArray.count; i++)
+        {
+            
+            if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Check"])
+            {
+                
+                [selectedCellsArray replaceObjectAtIndex:i withObject:@"Uncheck"];
+            }
+            
+            
+        }
+        //[self.tableView beginUpdates];
+        //[self.tableView endUpdates];
+        [self.tableView reloadData];
+    }
+    
+    else {
+        isSelectedAll =YES;
+        [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+        for(int i=0; i<selectedCellsArray.count; i++)
+        {
+            
+            if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Uncheck"])
+            {
+                
+                [selectedCellsArray replaceObjectAtIndex:i withObject:@"Check"];
+            }
+            
+            
+        }
+        
+    }
+    
+    //[self.tableView beginUpdates];
+    //[self.tableView endUpdates];
+    [self.tableView reloadData];
+    
 }
 @end
