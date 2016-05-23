@@ -11,6 +11,7 @@
 #import "CallUsViewcontroller.h"
 #import "User.h"
 #import "MBProgressHUD.h"
+#import "UserSignInViewController.h"
 @interface SignupOrResetPasswordViewcontroller : UIViewController <UITextFieldDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>{
     BOOL passwordShown;
     NSMutableDictionary * responseDict;

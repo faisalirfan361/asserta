@@ -14,10 +14,10 @@
 }
 - (IBAction)validationNoBtnAction:(id)sender {
     
-//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    SignupOrResetPasswordViewcontroller *vc =[storyboard instantiateViewControllerWithIdentifier:@"signupVC"];
-//    [self.navigationController pushViewController:vc animated:YES];
-    [self helpBtnAction:nil];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+    [self.navigationController pushViewController:vc animated:YES];
+   // [self helpBtnAction:nil];
 }
 
 - (IBAction)validationYesBtnAction:(id)sender {

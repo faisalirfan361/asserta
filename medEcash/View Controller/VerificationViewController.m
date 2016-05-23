@@ -37,8 +37,7 @@
                                         requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/enrollment"]];
         
         NSDictionary *parametersDictionary = @{
-                                               @"client_id": @"asdf1234",
-                                           @"device_uid":@"86db5a88975755f76bd733533fa229fe661abf6d",
+                                                 @"client_id": @"asdf1234",@"device_uid":@"86db5a88975755f76bd733533fa229fe661abf6d",
                                                @"enrollment_code":self.verificationCodeTextField.text
                                                };
         NSError *error;
@@ -108,12 +107,18 @@
         
         data.token=[responseDict valueForKey:@"enrollment_token"];
         data.devicId = @"86db5a88975755f76bd733533fa229fe661abf6d";
+        data.devicId =[responseDict valueForKey:@"date_of_birth"];
         if (data.token) {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ValidateUserViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"ValidateUserVC"];
             [self.navigationController pushViewController:vc animated:YES];
         }
-        
      
     }
 

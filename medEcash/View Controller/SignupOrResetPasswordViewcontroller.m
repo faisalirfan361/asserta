@@ -53,9 +53,6 @@
     return NO;
 }
 - (IBAction)createAccountBtnAction:(id)sender {
-//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    PaymentsViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"paymentsVC"];
-//    [self.navigationController pushViewController:vc animated:YES];
     
     
     
@@ -69,9 +66,9 @@
                                     requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/authentication"]];
     
     NSDictionary *parametersDictionary = @{
-                                           @"client_id": @"asdf1234",
-                                        @"device_uid":data.devicId,
-                                           @"enrollment_code":data.token,
+                                          @"client_id": @"asdf1234",
+                                        @"device_uid":@"364364636747364",
+                                        @"enrollment_code":data.token,
                                            @"usn":self.userNameTextField.text,
                                            @"pwd":self.passwordTextField.text
                                            };
@@ -131,7 +128,9 @@ else {
     }
     else if (responseDict) {
 
-        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
     

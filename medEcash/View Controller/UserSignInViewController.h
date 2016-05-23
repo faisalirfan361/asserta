@@ -10,9 +10,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PaymentsViewController.h"
 #import "CallUsViewcontroller.h"
-@interface UserSignInViewController : UIViewController <UITextFieldDelegate>{
+#import "SignupOrResetPasswordViewcontroller.h"
+#import "User.h"
+@interface UserSignInViewController : UIViewController <UITextFieldDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>{
     BOOL passwordShown;
+    NSMutableDictionary * responseDict;
+    User *data;
+
 }
+@property (strong, nonatomic) NSMutableData *responseData;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTxtField;
 @property (weak, nonatomic) IBOutlet UIButton *showPasswordTickBtn;

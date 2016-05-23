@@ -12,5 +12,6 @@
 @property(strong,nonatomic)NSString * devicId;
 @property(strong,nonatomic)NSString  *username;
 @property(strong,nonatomic)NSString  *token;
+@property(strong,nonatomic)NSString  *birthDate;
 +(User *)sharedManager;
 @end

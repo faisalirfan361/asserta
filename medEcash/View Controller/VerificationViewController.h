@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "UserSignInViewController.h"
 #import "ValidateUserViewController.h"
+#import "UserSignInViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "CallUsViewcontroller.h"
 #import "User.h"
+#import "SignupOrResetPasswordViewcontroller.h"
 @interface VerificationViewController : UIViewController<UITextFieldDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate> {
     NSMutableDictionary * responseDict;
     User *data;

@@ -187,9 +187,9 @@
 }
 - (void)selectAll:(id)sender {
     UIButton *button = (UIButton *)sender;
-    button.hidden = YES;
+    //button.hidden = YES;
     if (isSelectedAll) {
-        isSelectedAll =NO;
+        isSelectedAll = NO;
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         for(int i=0; i<selectedCellsArray.count; i++)
         {
@@ -202,9 +202,10 @@
             
             
         }
-        //[self.tableView beginUpdates];
-        //[self.tableView endUpdates];
         [self.tableView reloadData];
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+//
     }
     
     else {
@@ -223,10 +224,10 @@
         }
         
     }
-    
-    //[self.tableView beginUpdates];
-    //[self.tableView endUpdates];
     [self.tableView reloadData];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+  //
     
 }
 @end
