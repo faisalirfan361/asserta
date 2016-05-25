@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		03656A29A6FD2730D84D44F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE18580F939605D0F3B02307 /* libPods.a */; };
 		183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88261CF06AD50023102B /* CallUsViewcontroller.m */; };
-		183B882D1CF0B3F30023102B /* DHSidebarLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */; };
-		183B882E1CF0B3F30023102B /* DHSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B882C1CF0B3F30023102B /* DHSidebarViewController.m */; };
 		183B88321CF0EE690023102B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88311CF0EE690023102B /* User.m */; };
 		18569B041CE914B9004FFFC1 /* ValidateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18569B031CE914B9004FFFC1 /* ValidateUserViewController.m */; };
 		18569B061CE914F0004FFFC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18569B051CE914F0004FFFC1 /* QuartzCore.framework */; };
@@ -23,6 +21,15 @@
 		18569B181CEA731D004FFFC1 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 18569B171CEA731D004FFFC1 /* checked.png */; };
 		18569B1A1CEA8728004FFFC1 /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 18569B191CEA8728004FFFC1 /* bottom.png */; };
 		189813481CE4FD3500F7A27A /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189813471CE4FD3500F7A27A /* VerificationViewController.m */; };
+		18AA1C131CF4E579001F7ED0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C051CF4E579001F7ED0 /* MainViewController.m */; };
+		18AA1C141CF4E579001F7ED0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C071CF4E579001F7ED0 /* MapViewController.m */; };
+		18AA1C151CF4E579001F7ED0 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA1C081CF4E579001F7ED0 /* menu.png */; };
+		18AA1C161CF4E579001F7ED0 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA1C091CF4E579001F7ED0 /* menu@2x.png */; };
+		18AA1C171CF4E579001F7ED0 /* nav_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AA1C0A1CF4E579001F7ED0 /* nav_bg.png */; };
+		18AA1C181CF4E579001F7ED0 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C0C1CF4E579001F7ED0 /* PhotoViewController.m */; };
+		18AA1C191CF4E579001F7ED0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */; };
+		18AA1C1A1CF4E579001F7ED0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */; };
+		18AA1C1D1CF4EED1001F7ED0 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */; };
 		18C3CA651CE4F9AF00D17136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CA641CE4F9AF00D17136 /* main.m */; };
 		18C3CA681CE4F9AF00D17136 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CA671CE4F9AF00D17136 /* AppDelegate.m */; };
 		18C3CA6E1CE4F9AF00D17136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C3CA6C1CE4F9AF00D17136 /* Main.storyboard */; };
@@ -35,10 +42,6 @@
 		183B88241CF052140023102B /* dejavu-sans.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dejavu-sans.bold.ttf"; sourceTree = "<group>"; };
 		183B88251CF06AD50023102B /* CallUsViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallUsViewcontroller.h; sourceTree = "<group>"; };
 		183B88261CF06AD50023102B /* CallUsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallUsViewcontroller.m; sourceTree = "<group>"; };
-		183B88291CF0B3F30023102B /* DHSidebarLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSidebarLayoutView.h; sourceTree = "<group>"; };
-		183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHSidebarLayoutView.m; sourceTree = "<group>"; };
-		183B882B1CF0B3F30023102B /* DHSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSidebarViewController.h; sourceTree = "<group>"; };
-		183B882C1CF0B3F30023102B /* DHSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHSidebarViewController.m; sourceTree = "<group>"; };
 		183B88301CF0EE690023102B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		183B88311CF0EE690023102B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		18569B021CE914B9004FFFC1 /* ValidateUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateUserViewController.h; sourceTree = "<group>"; };
@@ -57,6 +60,21 @@
 		18569B191CEA8728004FFFC1 /* bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom.png; sourceTree = "<group>"; };
 		189813461CE4FD3500F7A27A /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		189813471CE4FD3500F7A27A /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
+		18AA1C041CF4E579001F7ED0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		18AA1C051CF4E579001F7ED0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		18AA1C061CF4E579001F7ED0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		18AA1C071CF4E579001F7ED0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		18AA1C081CF4E579001F7ED0 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		18AA1C091CF4E579001F7ED0 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		18AA1C0A1CF4E579001F7ED0 /* nav_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_bg.png; sourceTree = "<group>"; };
+		18AA1C0B1CF4E579001F7ED0 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		18AA1C0C1CF4E579001F7ED0 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		18AA1C0D1CF4E579001F7ED0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		18AA1C0F1CF4E579001F7ED0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		18AA1C1B1CF4EED1001F7ED0 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordViewController.h; sourceTree = "<group>"; };
+		18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		18C3CA601CE4F9AF00D17136 /* medEcash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medEcash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C3CA641CE4F9AF00D17136 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18C3CA661CE4F9AF00D17136 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,17 +102,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		183B88281CF0B3F30023102B /* Side Menu */ = {
-			isa = PBXGroup;
-			children = (
-				183B88291CF0B3F30023102B /* DHSidebarLayoutView.h */,
-				183B882A1CF0B3F30023102B /* DHSidebarLayoutView.m */,
-				183B882B1CF0B3F30023102B /* DHSidebarViewController.h */,
-				183B882C1CF0B3F30023102B /* DHSidebarViewController.m */,
-			);
-			path = "Side Menu";
-			sourceTree = "<group>";
-		};
 		183B882F1CF0EE3C0023102B /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +123,26 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		1895ED9A1CF443F8008C30A2 /* SlideOutMenuFiles */ = {
+			isa = PBXGroup;
+			children = (
+				18AA1C041CF4E579001F7ED0 /* MainViewController.h */,
+				18AA1C051CF4E579001F7ED0 /* MainViewController.m */,
+				18AA1C061CF4E579001F7ED0 /* MapViewController.h */,
+				18AA1C071CF4E579001F7ED0 /* MapViewController.m */,
+				18AA1C081CF4E579001F7ED0 /* menu.png */,
+				18AA1C091CF4E579001F7ED0 /* menu@2x.png */,
+				18AA1C0A1CF4E579001F7ED0 /* nav_bg.png */,
+				18AA1C0B1CF4E579001F7ED0 /* PhotoViewController.h */,
+				18AA1C0C1CF4E579001F7ED0 /* PhotoViewController.m */,
+				18AA1C0D1CF4E579001F7ED0 /* SidebarViewController.h */,
+				18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */,
+				18AA1C0F1CF4E579001F7ED0 /* SWRevealViewController.h */,
+				18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */,
+			);
+			path = SlideOutMenuFiles;
+			sourceTree = "<group>";
+		};
 		189813451CE4FD2700F7A27A /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +156,8 @@
 				18569B0B1CE92491004FFFC1 /* UserSignInViewController.m */,
 				18569B0D1CE92501004FFFC1 /* PaymentsViewController.h */,
 				18569B0E1CE92501004FFFC1 /* PaymentsViewController.m */,
+				18AA1C1B1CF4EED1001F7ED0 /* ResetPasswordViewController.h */,
+				18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */,
 				183B88251CF06AD50023102B /* CallUsViewcontroller.h */,
 				183B88261CF06AD50023102B /* CallUsViewcontroller.m */,
 			);
@@ -156,8 +185,8 @@
 		18C3CA621CE4F9AF00D17136 /* medEcash */ = {
 			isa = PBXGroup;
 			children = (
+				1895ED9A1CF443F8008C30A2 /* SlideOutMenuFiles */,
 				183B882F1CF0EE3C0023102B /* Singleton */,
-				183B88281CF0B3F30023102B /* Side Menu */,
 				189813451CE4FD2700F7A27A /* View Controller */,
 				18C3CA661CE4F9AF00D17136 /* AppDelegate.h */,
 				18C3CA671CE4F9AF00D17136 /* AppDelegate.m */,
@@ -269,10 +298,13 @@
 			files = (
 				18C3CA731CE4F9AF00D17136 /* LaunchScreen.storyboard in Resources */,
 				18569B141CEA6E73004FFFC1 /* expand.png in Resources */,
+				18AA1C161CF4E579001F7ED0 /* menu@2x.png in Resources */,
 				18E749DF1CEFA81D00C4B99D /* DejaVuSans.ttf in Resources */,
 				18569B1A1CEA8728004FFFC1 /* bottom.png in Resources */,
 				18C3CA701CE4F9AF00D17136 /* Assets.xcassets in Resources */,
+				18AA1C171CF4E579001F7ED0 /* nav_bg.png in Resources */,
 				18569B131CEA6E73004FFFC1 /* collapse.png in Resources */,
+				18AA1C151CF4E579001F7ED0 /* menu.png in Resources */,
 				18569B181CEA731D004FFFC1 /* checked.png in Resources */,
 				18569B161CEA7314004FFFC1 /* unchecked.png in Resources */,
 				18C3CA6E1CE4F9AF00D17136 /* Main.storyboard in Resources */,
@@ -319,17 +351,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18AA1C191CF4E579001F7ED0 /* SidebarViewController.m in Sources */,
+				18AA1C1D1CF4EED1001F7ED0 /* ResetPasswordViewController.m in Sources */,
 				18569B091CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m in Sources */,
-				183B882E1CF0B3F30023102B /* DHSidebarViewController.m in Sources */,
 				18569B0C1CE92491004FFFC1 /* UserSignInViewController.m in Sources */,
 				189813481CE4FD3500F7A27A /* VerificationViewController.m in Sources */,
+				18AA1C131CF4E579001F7ED0 /* MainViewController.m in Sources */,
 				18C3CA681CE4F9AF00D17136 /* AppDelegate.m in Sources */,
 				183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */,
+				18AA1C1A1CF4E579001F7ED0 /* SWRevealViewController.m in Sources */,
 				183B88321CF0EE690023102B /* User.m in Sources */,
 				18C3CA651CE4F9AF00D17136 /* main.m in Sources */,
 				18569B0F1CE92501004FFFC1 /* PaymentsViewController.m in Sources */,
+				18AA1C181CF4E579001F7ED0 /* PhotoViewController.m in Sources */,
 				18569B041CE914B9004FFFC1 /* ValidateUserViewController.m in Sources */,
-				183B882D1CF0B3F30023102B /* DHSidebarLayoutView.m in Sources */,
+				18AA1C141CF4E579001F7ED0 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

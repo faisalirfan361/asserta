@@ -14,22 +14,22 @@
     passwordShown=NO;
     self.userNameTxtField.delegate = self;
     self.passwordTxtField.delegate = self;
-    UIColor * color = [UIColor colorWithRed:233.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1.0];
-        CALayer *border = [CALayer layer];
-        CGFloat borderWidth = 2;
-        border.borderColor = color.CGColor;
-        border.frame = CGRectMake(0, self.userNameTxtField.frame.size.height - borderWidth, self.userNameTxtField.frame.size.width, self.userNameTxtField.frame.size.height);
-        border.borderWidth = borderWidth;
-        [self.userNameTxtField.layer addSublayer:border];
-        self.userNameTxtField.layer.masksToBounds = YES;
-    
-    CALayer *border1 = [CALayer layer];
-    CGFloat borderWidth1 = 2;
-    border1.borderColor = color.CGColor;
-    border1.frame = CGRectMake(0, self.passwordTxtField.frame.size.height - borderWidth1, self.passwordTxtField.frame.size.width, self.userNameTxtField.frame.size.height);
-    border1.borderWidth = borderWidth1;
-    [self.passwordTxtField.layer addSublayer:border1];
-    self.passwordTxtField.layer.masksToBounds = YES;
+//    UIColor * color = [UIColor colorWithRed:233.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1.0];
+//        CALayer *border = [CALayer layer];
+//        CGFloat borderWidth = 2;
+//        border.borderColor = color.CGColor;
+//        border.frame = CGRectMake(0, self.userNameTxtField.frame.size.height - borderWidth, self.userNameTxtField.frame.size.width, self.userNameTxtField.frame.size.height);
+//        border.borderWidth = borderWidth;
+//        [self.userNameTxtField.layer addSublayer:border];
+//        self.userNameTxtField.layer.masksToBounds = YES;
+//    
+//    CALayer *border1 = [CALayer layer];
+//    CGFloat borderWidth1 = 2;
+//    border1.borderColor = color.CGColor;
+//    border1.frame = CGRectMake(0, self.passwordTxtField.frame.size.height - borderWidth1, self.passwordTxtField.frame.size.width, self.userNameTxtField.frame.size.height);
+//    border1.borderWidth = borderWidth1;
+//    [self.passwordTxtField.layer addSublayer:border1];
+//    self.passwordTxtField.layer.masksToBounds = YES;
     data = [User sharedManager];
 }
 - (IBAction)showPasswordTickBtnAction:(id)sender {
@@ -130,7 +130,7 @@
     else if (responseDict) {
       
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            PaymentsViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"paymentsVC"];
+            SWRevealViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"revealVC"];
             [self.navigationController pushViewController:vc animated:YES];
 
         
