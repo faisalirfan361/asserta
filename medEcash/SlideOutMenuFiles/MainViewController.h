@@ -11,15 +11,19 @@
 #import "KGModal.h"
 #import "User.h"
 #import "MBProgressHUD.h"
-@interface MainViewController : UIViewController<UIPopoverControllerDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate,UITableViewDataSource,UITableViewDelegate> {
+@interface MainViewController : UIViewController<UIPopoverControllerDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate> {
     NSMutableArray * dataArray;
     NSMutableArray * selectedCellsArray;
     NSMutableArray * expandCellsArray;
     BOOL isSelectedAll;
+    BOOL isToPay;
     NSMutableDictionary * responseDict;
+    NSMutableDictionary * payResponseDict;
+    NSMutableArray * payIdsArray;
     User *data;
     NSMutableArray * data2;
     NSMutableArray * data1;
+    
 }
 - (IBAction)payBtnAction:(id)sender;
 @property (strong, nonatomic) NSMutableData *responseData;

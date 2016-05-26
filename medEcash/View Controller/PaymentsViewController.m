@@ -165,18 +165,18 @@
     
     // No need to use tag sender will keep the reference of clicked button
     UIButton *button = (UIButton *)sender;
-    
+    NSString * tagStr = [NSString stringWithFormat:@"%li", (long)((UIControl*)sender).tag];
     //Checking the condition button is checked or unchecked.
     //accordingly replace the array object and change the button image
-    if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
+    if([selectedCellsArray containsObject:tagStr])
     {
-        [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Check"];
+        [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+        [selectedCellsArray removeObject:tagStr];
     }
     else
     {
-        [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-        [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Uncheck"];
+        [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+        [selectedCellsArray addObject:tagStr];
     }
 }
 - (void) collapseExpandButtonTap:(id) sender

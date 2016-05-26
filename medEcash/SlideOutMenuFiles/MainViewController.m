@@ -25,7 +25,7 @@
     //self.title = @"medEcash";
     UIImageView *imageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mainLogo"]];
     self.navigationItem.titleView = imageView;
-
+    isToPay = NO;
     // Change button color
     _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
     
@@ -37,6 +37,7 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     selectedCellsArray = [[NSMutableArray alloc]init];
     expandCellsArray = [[NSMutableArray alloc]init];
+    payIdsArray = [[NSMutableArray alloc]init];
     isSelectedAll = NO;
     // setting all unchecks initially
     for(int i=0; i<5; i++)
@@ -85,7 +86,9 @@
     
         //if ([payemtStr  isEqual:@"0"]) {
         //UnpiadCell
-        
+    
+    
+    
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         // Configure the cell...
@@ -93,77 +96,21 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
     
-//    if (indexPath.section == 0) {
-//        if (dataArray) {
-//             data1 = [[NSMutableArray alloc]initWithArray:[dataArray objectAtIndex:0]];
-//        }
-//        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
-//         BOOL is = [[[data1 valueForKey:@"paid"]objectAtIndex:indexPath.row] boolValue];
-//        if (is == YES) {
-//            payToLbl.text = @"";
-//        }
-//        else
-//        {
-//          payToLbl.text = @"Pay To";
-//        }
-//    }
-//    
-//    if (indexPath.section == 1) {
-//        if (dataArray) {
-//            data2 = [[NSMutableArray alloc]initWithArray:[dataArray objectAtIndex:1]];
-//        
-//            
-//            UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
-//            BOOL is = [[[data2 valueForKey:@"paid"]objectAtIndex:indexPath.row]boolValue];
-//            if (is== YES) {
-//                payToLbl.text = @"";
-//            }
-//            else
-//            {
-//                payToLbl.text = @"Pay To";
-//            }
-//  
-//        
-//        }
-//
-//    }
-    
-        // Display recipe in the table cell
-//        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
-//        payToLbl.text = @"Pay To";
-    
-        UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
-        
-        UILabel *mainTitleLbk = (UILabel *)[cell viewWithTag:102];
-        mainTitleLbk.textColor= [UIColor blackColor];
-        //mainTitleLbk.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"provider"]objectAtIndex:indexPath.row];
-        
-       // UILabel *subTitleLbk = (UILabel *)[cell viewWithTag:103];
-       // subTitleLbk.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"description"]objectAtIndex:indexPath.row];
-        //NSString * completeAddressString = [NSString stringWithFormat:@"%@ %@",[[[[[responseDict valueForKey:@"cases"]valueForKey:@"line_1"]objectAtIndex:indexPath.section]valueForKey:@"line_2"]objectAtIndex:indexPath.row],[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"provider"]objectAtIndex:indexPath.row]];
-        //UILabel *addressLbl = (UILabel *)[cell viewWithTag:104];
-        
-      // addressLbl.text=completeAddressString;
-        
-        
-       // UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
-        
-       // numberLbl.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]valueForKey:@"phone"];
-    mainTitleLbk.text = [data1 valueForKey:@"provider"];
-    ((UILabel *)[cell viewWithTag:103]).text = [data1 valueForKey:@"description"];
-    ((UILabel *)[cell viewWithTag:104]).text = [NSString stringWithFormat:@"%@ %@ %@ %@, %@",
-                                                [data1 valueForKey:@"line_1"],
-                                                [data1 valueForKey:@"line_2"],
-                                                [data1 valueForKey:@"city"],
-                                                [data1 valueForKey:@"state"],
-                                                [data1 valueForKey:@"zip"]];
-    ((UILabel *)[cell viewWithTag:105]).text = [data1 valueForKey:@"phone"];
-    
-        UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
-        
-        // handeling check uncheck buttons
-        
-        
+
+    UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
+    UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
+    UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
+
+    if ([[data1 valueForKey:@"paid"]boolValue] ==1) {
+        payToLbl.text = @"";
+        [checkBtn setHidden:YES];
+        [expandBtn setHidden:YES];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    else {
+    payToLbl.text = @"Pay to";
+        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
         if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
             [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         else
@@ -174,18 +121,32 @@
         else
             [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
         
-        
-        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-        
         if ([selectedCellsArray containsObject:@"Check"]) {
             self.payBtn.hidden = NO;
         }
         else {
             self.payBtn.hidden = YES;
         }
-      return cell;
+
     }
+    
+        
+    UILabel *mainTitleLbk = (UILabel *)[cell viewWithTag:102];
+    mainTitleLbk.textColor= [UIColor blackColor];
+    mainTitleLbk.text = [data1 valueForKey:@"provider"];
+    ((UILabel *)[cell viewWithTag:103]).text = [data1 valueForKey:@"description"];
+    ((UILabel *)[cell viewWithTag:104]).text = [NSString stringWithFormat:@"%@ %@ %@ %@, %@",
+                                                [data1 valueForKey:@"line_1"],
+                                                [data1 valueForKey:@"line_2"],
+                                                [data1 valueForKey:@"city"],
+                                                [data1 valueForKey:@"state"],
+                                                [data1 valueForKey:@"zip"]];
+    ((UILabel *)[cell viewWithTag:105]).text = [data1 valueForKey:@"phone"];
+    // handeling check uncheck buttons
+    return cell;
+    
+
+}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:section];
@@ -240,15 +201,21 @@
     
     //Checking the condition button is checked or unchecked.
     //accordingly replace the array object and change the button image
+    data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:indexPath.section];
+    data1 = [data1 valueForKey:@"procedures"];
+    data1 = [data1 objectAtIndex:indexPath.row];
+    
     if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
     {
         [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
         [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Check"];
+        [payIdsArray addObject:[data1 valueForKey:@"id"]];
     }
     else
     {
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Uncheck"];
+        [payIdsArray removeObject:[data1 valueForKey:@"id"]];
     }
     [self.tableView reloadData];
 }
@@ -337,7 +304,7 @@
 
 
 -(void)callProcecduresData {
-    
+    isToPay = NO;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSMutableURLRequest *request = [NSMutableURLRequest
@@ -379,18 +346,60 @@
     NSError * error;
     NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     NSLog(@"response data - %@", responseStr);
+    if (isToPay) {
+        payResponseDict = [[NSMutableDictionary alloc]init];
+        payResponseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+         // call procedure API again
+        [self callProcecduresData];
+        
+    }
+    else {
+    responseDict = [[NSMutableDictionary alloc]init];
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
      if (responseDict) {
          
          dataArray = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
-        
          [self.tableView reloadData];
-}
+     }}
     
     
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex ==0) {
+        //
+    }
+    else if (buttonIndex == 1) {
+     // Call Pay Api here
+    }
+}
+- (void) callPayAction {
+    isToPay = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/actions"]];
+    
+    NSDictionary *parametersDictionary = @{
+                                           @"client_id": @"asdf1234",
+                                           @"device_uid":data.devicId,
+                                           @"token":data.authToken,
+                                           @"action_code":@"pay" ,
+                                           @"data" :@"AddDataArrayValues"
+                                           };
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
 
+    
+    
+}
 @end
