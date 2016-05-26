@@ -37,8 +37,8 @@
                                         requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/enrollment"]];
         
         NSDictionary *parametersDictionary = @{
-                                                 @"client_id":@"asdf1234",@"device_uid":@"86db5a88975755f76bd733533fa229fe661abf6d",
-                                               @"enrollment_code":self.verificationCodeTextField.text
+                                                 @"client_id":@"IOS",@"device_uid":data.devicId,
+                                                 @"enrollment_code":self.verificationCodeTextField.text
                                                };
         NSError *error;
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
@@ -53,7 +53,7 @@
     
     else {
         
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Incorrect , try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Incorrect verification code, try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
         
  }
@@ -91,6 +91,7 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     
 }
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSError * error;
@@ -106,20 +107,18 @@
     else if (responseDict) {
         
         data.token=[responseDict valueForKey:@"enrollment_token"];
-        data.devicId = @"86db5a88975755f76bd733533fa229fe661abf6d";
-        data.devicId =[responseDict valueForKey:@"date_of_birth"];
         if (data.token) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        else {
-            
-            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ValidateUserViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"ValidateUserVC"];
+            vc.dob = [responseDict valueForKey:@"date_of_birth"];
             [self.navigationController pushViewController:vc animated:YES];
         }
      
+    }
+    else {
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 
     

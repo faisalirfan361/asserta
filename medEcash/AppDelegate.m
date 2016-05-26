@@ -18,10 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"dejavu-sans.bold" size:18], NSFontAttributeName, nil]];
-    
+    [application setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
    // 
- 
-
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    User *data;
+    data = [User sharedManager];
+    [data setDevicId:uniqueIdentifier];
     return YES;
 }
 

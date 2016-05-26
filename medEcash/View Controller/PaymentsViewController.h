@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "User.h"
+#import "MBProgressHUD.h"
+
 @interface PaymentsViewController : UIViewController {
     NSMutableArray * dataArray;
     NSMutableArray * selectedCellsArray;
     NSMutableArray * expandCellsArray;
     BOOL isSelectedAll;
-
+    NSMutableDictionary * responseDict;
+    User *data;
 }
+@property (strong, nonatomic) NSMutableData *responseData;
 - (IBAction)menuBtnAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

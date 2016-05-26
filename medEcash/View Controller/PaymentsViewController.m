@@ -12,7 +12,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+   // [self loadData];
     selectedCellsArray = [[NSMutableArray alloc]init];
     expandCellsArray = [[NSMutableArray alloc]init];
     isSelectedAll = NO;
@@ -28,6 +28,27 @@
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 #pragma mark - Table view data source
+
+
+-(void) loadData {
+
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/resources"]];
+    
+    NSDictionary *parametersDictionary = @{
+                                           @"client_id": @"IOS",
+                                           @"device_uid":data.devicId,
+                                           @"token":data.token,
+                                           @"resource_type": @"all"
+                                           };
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -110,7 +131,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
-[selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
+    [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
     return cell.contentView;
 
 }
@@ -182,6 +203,43 @@
         [self.tableView endUpdates];
     }
 }
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.responseData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+    NSLog(@"%@",error.localizedDescription);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError * error;
+    NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    NSLog(@"response data - %@", responseStr);
+    responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if ([responseStr isEqualToString:@"\"No Procedures Found\""]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+        
+    }
+    else if (responseDict) {
+        
+        
+    }
+
+}
+
+
 - (IBAction)menuBtnAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

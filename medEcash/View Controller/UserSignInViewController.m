@@ -59,9 +59,8 @@
                                         requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/authentication"]];
         
         NSDictionary *parametersDictionary = @{
-                                               @"client_id": @"asdf1234",
-                                               @"device_uid":@"364364636747364",
-                                               @"token":data.token,
+                                               @"client_id": @"IOS",
+                                               @"device_uid":data.devicId,
                                                @"usn":self.userNameTxtField.text,
                                                @"pwd":self.passwordTxtField.text
                                                };
@@ -95,10 +94,6 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CallUsViewcontroller *vc =[storyboard instantiateViewControllerWithIdentifier:@"CallUsVC"];
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
-   
-    
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {

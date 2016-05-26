@@ -12,6 +12,11 @@
 #import "CallUsViewcontroller.h"
 #import "UserSignInViewController.h"
 @interface ValidateUserViewController : UIViewController
+
+@property (nonatomic , strong)  NSString *dob;
+ 
+@property (weak, nonatomic) IBOutlet UILabel *dobLabel;
+
 - (IBAction)validationNoBtnAction:(id)sender;
 - (IBAction)validationYesBtnAction:(id)sender;
 - (IBAction)helpBtnAction:(id)sender;

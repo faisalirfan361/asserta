@@ -9,9 +9,19 @@
 #import "ValidateUserViewController.h"
 
 @implementation ValidateUserViewController
+
+@synthesize dob = _dob;
+
+- (void) passDOB:(NSString *)value {
+    
+    _dob = value;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dobLabel.text = _dob;
 }
+
 - (IBAction)validationNoBtnAction:(id)sender {
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -21,18 +31,7 @@
 }
 
 - (IBAction)validationYesBtnAction:(id)sender {
-//    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    UIViewController* sidebarViewController = [storyboard instantiateViewControllerWithIdentifier:@"SidebarViewController"];
-//   
-//     PaymentsViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"paymentsVC"];
-//    DHSidebarViewController* sidebarVC = [[DHSidebarViewController alloc] initWithRootViewController:vc
-//                                                                               sidebarViewController:sidebarViewController];
-//    [self.navigationController setViewControllers:[NSArray arrayWithObject:sidebarVC] animated:YES];
-//    [sidebarVC toggleSidebar];
-//    [sidebarVC showRootViewController];
-    
-  
+
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SignupOrResetPasswordViewcontroller *vc =[storyboard instantiateViewControllerWithIdentifier:@"signupVC"];
         [self.navigationController pushViewController:vc animated:YES];

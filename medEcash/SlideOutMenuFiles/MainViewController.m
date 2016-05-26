@@ -77,7 +77,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *payemtStr =[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"paid"]objectAtIndex:indexPath.row];
+    data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:indexPath.section];
+    data1 = [data1 valueForKey:@"procedures"];
+    data1 = [data1 objectAtIndex:indexPath.row];
+    //[[[valueForKey:@"paid"]objectAtIndex:indexPath.row]valueForKey:@"procedures"];
     static NSString *CellIdentifier = @"Cell";
     
         //if ([payemtStr  isEqual:@"0"]) {
@@ -89,6 +92,7 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+    
 //    if (indexPath.section == 0) {
 //        if (dataArray) {
 //             data1 = [[NSMutableArray alloc]initWithArray:[dataArray objectAtIndex:0]];
@@ -123,7 +127,7 @@
 //        }
 //
 //    }
-
+    
         // Display recipe in the table cell
 //        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
 //        payToLbl.text = @"Pay To";
@@ -145,8 +149,15 @@
        // UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
         
        // numberLbl.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]valueForKey:@"phone"];
-    
-    
+    mainTitleLbk.text = [data1 valueForKey:@"provider"];
+    ((UILabel *)[cell viewWithTag:103]).text = [data1 valueForKey:@"description"];
+    ((UILabel *)[cell viewWithTag:104]).text = [NSString stringWithFormat:@"%@ %@ %@ %@, %@",
+                                                [data1 valueForKey:@"line_1"],
+                                                [data1 valueForKey:@"line_2"],
+                                                [data1 valueForKey:@"city"],
+                                                [data1 valueForKey:@"state"],
+                                                [data1 valueForKey:@"zip"]];
+    ((UILabel *)[cell viewWithTag:105]).text = [data1 valueForKey:@"phone"];
     
         UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
         
@@ -177,7 +188,8 @@
     }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+    data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:section];
+    data1 = [data1 valueForKey:@"summary"];
     static NSString *CellIdentifier = @"HeaderCell";
     //UnpiadCell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -186,6 +198,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
+    ((UILabel *)[cell viewWithTag:110]).text = [data1 valueForKey:@"case_name"];
+    ((UILabel *)[cell viewWithTag:111]).text = [[data1 valueForKey:@"total_cost"] stringValue];
+    ((UILabel *)[cell viewWithTag:112]).text = [[data1 valueForKey:@"your_cost"] stringValue];
     UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
     [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
     return cell.contentView;
@@ -329,7 +345,7 @@
     
     NSDictionary *parametersDictionary = @{
                                            @"client_id": @"asdf1234",
-                                           @"device_uid":@"364364636747364",
+                                           @"device_uid":data.devicId,
                                            @"token":data.authToken,
                                            @"resource_type":@"all"
                                            };
