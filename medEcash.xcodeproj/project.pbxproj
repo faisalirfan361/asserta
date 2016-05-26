@@ -36,6 +36,7 @@
 		18C3CA701CE4F9AF00D17136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C3CA6F1CE4F9AF00D17136 /* Assets.xcassets */; };
 		18C3CA731CE4F9AF00D17136 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C3CA711CE4F9AF00D17136 /* LaunchScreen.storyboard */; };
 		18E749DF1CEFA81D00C4B99D /* DejaVuSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18E749DE1CEFA81D00C4B99D /* DejaVuSans.ttf */; };
+		18F8C2CF1CF60257001D3149 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8C2CE1CF60257001D3149 /* KGModal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,8 @@
 		18C3CA721CE4F9AF00D17136 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18C3CA741CE4F9AF00D17136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18E749DE1CEFA81D00C4B99D /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
+		18F8C2CD1CF60257001D3149 /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
+		18F8C2CE1CF60257001D3149 /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
 		6A1B9E256D22F5A968B1BBCB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		94E848EAE860A44E5A223029 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FE18580F939605D0F3B02307 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,8 @@
 		1895ED9A1CF443F8008C30A2 /* SlideOutMenuFiles */ = {
 			isa = PBXGroup;
 			children = (
+				18F8C2CD1CF60257001D3149 /* KGModal.h */,
+				18F8C2CE1CF60257001D3149 /* KGModal.m */,
 				18AA1C041CF4E579001F7ED0 /* MainViewController.h */,
 				18AA1C051CF4E579001F7ED0 /* MainViewController.m */,
 				18AA1C061CF4E579001F7ED0 /* MapViewController.h */,
@@ -354,6 +359,7 @@
 				18AA1C191CF4E579001F7ED0 /* SidebarViewController.m in Sources */,
 				18AA1C1D1CF4EED1001F7ED0 /* ResetPasswordViewController.m in Sources */,
 				18569B091CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m in Sources */,
+				18F8C2CF1CF60257001D3149 /* KGModal.m in Sources */,
 				18569B0C1CE92491004FFFC1 /* UserSignInViewController.m in Sources */,
 				189813481CE4FD3500F7A27A /* VerificationViewController.m in Sources */,
 				18AA1C131CF4E579001F7ED0 /* MainViewController.m in Sources */,

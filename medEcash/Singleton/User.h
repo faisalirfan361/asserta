@@ -13,5 +13,6 @@
 @property(strong,nonatomic)NSString  *username;
 @property(strong,nonatomic)NSString  *token;
 @property(strong,nonatomic)NSString  *birthDate;
+@property(strong,nonatomic)NSString  *authToken;
 +(User *)sharedManager;
 @end

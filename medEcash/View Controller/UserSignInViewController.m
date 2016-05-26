@@ -128,7 +128,7 @@
         
     }
     else if (responseDict) {
-      
+        data.authToken = [responseDict valueForKey:@"access_token"];
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             SWRevealViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"revealVC"];
             [self.navigationController pushViewController:vc animated:YES];

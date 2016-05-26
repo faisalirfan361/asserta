@@ -37,7 +37,7 @@
                                         requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/enrollment"]];
         
         NSDictionary *parametersDictionary = @{
-                                                 @"client_id": @"asdf1234",@"device_uid":@"86db5a88975755f76bd733533fa229fe661abf6d",
+                                                 @"client_id":@"asdf1234",@"device_uid":@"86db5a88975755f76bd733533fa229fe661abf6d",
                                                @"enrollment_code":self.verificationCodeTextField.text
                                                };
         NSError *error;

@@ -49,8 +49,10 @@
     }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+    self.payBtn.hidden = YES;
 
-
+    data = [User sharedManager];
+    [self callProcecduresData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,77 +65,121 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [responseDict count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+   return  [[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:section]count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *payemtStr =[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"paid"]objectAtIndex:indexPath.row];
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //if ([payemtStr  isEqual:@"0"]) {
+        //UnpiadCell
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        // Configure the cell...
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+//    if (indexPath.section == 0) {
+//        if (dataArray) {
+//             data1 = [[NSMutableArray alloc]initWithArray:[dataArray objectAtIndex:0]];
+//        }
+//        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
+//         BOOL is = [[[data1 valueForKey:@"paid"]objectAtIndex:indexPath.row] boolValue];
+//        if (is == YES) {
+//            payToLbl.text = @"";
+//        }
+//        else
+//        {
+//          payToLbl.text = @"Pay To";
+//        }
+//    }
+//    
+//    if (indexPath.section == 1) {
+//        if (dataArray) {
+//            data2 = [[NSMutableArray alloc]initWithArray:[dataArray objectAtIndex:1]];
+//        
+//            
+//            UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
+//            BOOL is = [[[data2 valueForKey:@"paid"]objectAtIndex:indexPath.row]boolValue];
+//            if (is== YES) {
+//                payToLbl.text = @"";
+//            }
+//            else
+//            {
+//                payToLbl.text = @"Pay To";
+//            }
+//  
+//        
+//        }
+//
+//    }
+
+        // Display recipe in the table cell
+//        UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
+//        payToLbl.text = @"Pay To";
+    
+        UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
+        
+        UILabel *mainTitleLbk = (UILabel *)[cell viewWithTag:102];
+        mainTitleLbk.textColor= [UIColor blackColor];
+        //mainTitleLbk.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"provider"]objectAtIndex:indexPath.row];
+        
+       // UILabel *subTitleLbk = (UILabel *)[cell viewWithTag:103];
+       // subTitleLbk.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"description"]objectAtIndex:indexPath.row];
+        //NSString * completeAddressString = [NSString stringWithFormat:@"%@ %@",[[[[[responseDict valueForKey:@"cases"]valueForKey:@"line_1"]objectAtIndex:indexPath.section]valueForKey:@"line_2"]objectAtIndex:indexPath.row],[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]valueForKey:@"provider"]objectAtIndex:indexPath.row]];
+        //UILabel *addressLbl = (UILabel *)[cell viewWithTag:104];
+        
+      // addressLbl.text=completeAddressString;
+        
+        
+       // UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
+        
+       // numberLbl.text=[[[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]valueForKey:@"phone"];
+    
+    
+    
+        UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
+        
+        // handeling check uncheck buttons
+        
+        
+        if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
+            [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+        else
+            [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+        
+        if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
+            [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
+        else
+            [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
+        
+        
+        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if ([selectedCellsArray containsObject:@"Check"]) {
+            self.payBtn.hidden = NO;
+        }
+        else {
+            self.payBtn.hidden = YES;
+        }
+      return cell;
     }
-    
-    
-    
-    // Display recipe in the table cell
-    UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
-    payToLbl.text = @"Pay To";
-    
-    UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
-    
-    UILabel *mainTitleLbk = (UILabel *)[cell viewWithTag:102];
-    mainTitleLbk.textColor= [UIColor blackColor];
-    mainTitleLbk.text=@"Cumming GA Physical Therpay Clinic";
-    
-    UILabel *subTitleLbk = (UILabel *)[cell viewWithTag:103];
-    subTitleLbk.text=@"Physical Therapy Treatements";
-    
-    UILabel *addressLbl = (UILabel *)[cell viewWithTag:104];
-    
-    addressLbl.text=@"2920 Ronals Regan Blvd Suit 102 Cumming GA , 30041";
-    
-    
-    UILabel *numberLbl = (UILabel *)[cell viewWithTag:105];
-    
-    numberLbl.text=@"(0404) 555-1212";
-    
-    UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
-    
-    // handeling check uncheck buttons
-    
-    
-    if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
-        [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-    else
-        [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-    
-    if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
-        [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
-    else
-        [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
-    
-    
-    
-    [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    return cell;
-}
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
     static NSString *CellIdentifier = @"HeaderCell";
+    //UnpiadCell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
@@ -164,7 +210,7 @@
         
     }
     
-    return 0;
+    return 70;
 }
 -(void)checkBtnClicked:(id)sender
 {
@@ -188,6 +234,7 @@
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Uncheck"];
     }
+    [self.tableView reloadData];
 }
 - (void) collapseExpandButtonTap:(id) sender
 {
@@ -233,10 +280,10 @@
             
             
         }
-      // [self.tableView reloadData];
-       [self.tableView beginUpdates];
-       [self.tableView endUpdates];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
+      [self.tableView reloadData];
+       //[self.tableView beginUpdates];
+       //[self.tableView endUpdates];
+       // [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
         //
     }
     
@@ -256,12 +303,78 @@
         }
         
     }
-    //[self.tableView reloadData];
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+   // [self.tableView beginUpdates];
+    //[self.tableView endUpdates];
+    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
     //
     
 }
+
+- (IBAction)payBtnAction:(id)sender {
+    // Generate content view to present
+    UIAlertView * Alert = [[UIAlertView alloc]initWithTitle:@"Cumming GA Physical Therapy Clinic" message:@"Are you sure you want to pay?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Pay", nil];
+    
+    [Alert show];
+    
+}
+
+
+-(void)callProcecduresData {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/resources"]];
+    
+    NSDictionary *parametersDictionary = @{
+                                           @"client_id": @"asdf1234",
+                                           @"device_uid":@"364364636747364",
+                                           @"token":data.authToken,
+                                           @"resource_type":@"all"
+                                           };
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+
+    
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.responseData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+    NSLog(@"%@",error.localizedDescription);
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError * error;
+    NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    NSLog(@"response data - %@", responseStr);
+    responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+     if (responseDict) {
+         
+         dataArray = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
+        
+         [self.tableView reloadData];
+}
+    
+    
+    
+}
+
 
 @end
