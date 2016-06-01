@@ -25,6 +25,7 @@
     self.verificationCodeTextField.delegate=self;
     responseDict = [[NSMutableDictionary alloc]init];
     data = [User sharedManager];
+    self.view.backgroundColor = data.bgClr;
 }
 - (IBAction)verificationBtnAction:(id)sender {
     if ([self.verificationCodeTextField.text length]>5) {

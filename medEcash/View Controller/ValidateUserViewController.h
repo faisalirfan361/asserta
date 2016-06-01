@@ -11,6 +11,7 @@
 #import "SignupOrResetPasswordViewcontroller.h"
 #import "CallUsViewcontroller.h"
 #import "UserSignInViewController.h"
+#import "User.h"
 @interface ValidateUserViewController : UIViewController
 
 @property (nonatomic , strong)  NSString *dob;

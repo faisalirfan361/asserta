@@ -18,7 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"News";
-    
+    User* data = [User sharedManager];
+    self.view.backgroundColor = data.bgClr;
     // Change button color
     _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
     
@@ -28,7 +29,9 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-
+ 
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {

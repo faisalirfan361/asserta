@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dobLabel.text = _dob;
+    User * data;
+    data =[User sharedManager];
+    self.view.backgroundColor = data.bgClr;
 }
 
 - (IBAction)validationNoBtnAction:(id)sender {

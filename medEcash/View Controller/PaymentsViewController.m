@@ -26,6 +26,9 @@
         [expandCellsArray addObject:@"Collapse"];
     }
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    data = [User sharedManager];
+    self.view.backgroundColor = data.bgClr;
 }
 #pragma mark - Table view data source
 

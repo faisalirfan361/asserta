@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 
 @interface AppDelegate ()
 
@@ -24,6 +26,17 @@
     User *data;
     data = [User sharedManager];
     [data setDevicId:uniqueIdentifier];
+    [data setStausBarClr:[data colorWithHexString:@"e78216"]];
+    [data setBgClr:[data colorWithHexString:@"e78156"]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
+        view.backgroundColor=data.stausBarClr;
+        [self.window.rootViewController.view addSubview:view];
+    }
+    
+
     return YES;
 }
 
@@ -48,5 +61,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
 @end

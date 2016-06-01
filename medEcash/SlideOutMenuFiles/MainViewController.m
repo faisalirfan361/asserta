@@ -16,7 +16,7 @@
 @implementation MainViewController
 - (void)viewWillAppear:(BOOL)animated {
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:143.0/255.0 green:38.0/255.0 blue:30.0/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setBarTintColor:data.bgClr];
 }
 - (void)viewDidLoad
 {
@@ -357,6 +357,9 @@
     else {
     responseDict = [[NSMutableDictionary alloc]init];
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+        data = [User sharedManager];
+        [data setStausBarClr:[data colorWithHexString:[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"]]];
+        [data setBgClr:[data colorWithHexString:[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_2"]]];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
      if (responseDict) {
          

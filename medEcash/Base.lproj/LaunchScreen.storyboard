@@ -16,7 +16,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="zTD-ev-xcJ">
+                                <rect key="frame" x="239" y="100" width="134" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="BH7-fI-d6i"/>
+                                    <constraint firstAttribute="width" constant="134" id="tZT-9F-wVa"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wz-ft-0E0">
+                                <rect key="frame" x="245" y="481" width="134" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="yic-aJ-4OR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85882352941176465" green="0.43137254901960786" blue="0.23921568627450981" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4wz-ft-0E0" firstAttribute="trailing" secondItem="zTD-ev-xcJ" secondAttribute="trailing" constant="6" id="XIn-BO-xHc"/>
+                            <constraint firstItem="4wz-ft-0E0" firstAttribute="leading" secondItem="zTD-ev-xcJ" secondAttribute="leading" constant="6" id="g74-bm-4QP"/>
+                            <constraint firstItem="zTD-ev-xcJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="6" id="yfD-kD-4jK"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4wz-ft-0E0" secondAttribute="bottom" constant="98" id="zpN-ZQ-ZCm"/>
+                            <constraint firstItem="zTD-ev-xcJ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="80" id="zyE-uA-tMz"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +49,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mainLogo" width="134" height="22"/>
+    </resources>
 </document>
