@@ -28,17 +28,20 @@
     self.view.backgroundColor = data.bgClr;
 }
 - (IBAction)verificationBtnAction:(id)sender {
-    if ([self.verificationCodeTextField.text length]>5) {
+    
+    
+    if ([self.verificationCodeTextField.text length]>0) {
     
     
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         /// 86db5a88975755f76bd733533fa229fe661abf6d
         
         NSMutableURLRequest *request = [NSMutableURLRequest
-                                        requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/enrollment"]];
+                                        requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/enrollment"]];
         
         NSDictionary *parametersDictionary = @{
-                                                 @"client_id":@"IOS",@"device_uid":data.devicId,
+                                                 @"client_id":data.client_id,
+                                                 @"device_uid":data.devicId,
                                                  @"enrollment_code":self.verificationCodeTextField.text
                                                };
         NSError *error;
@@ -100,7 +103,7 @@
     NSLog(@"response data - %@", responseStr);
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([responseStr isEqualToString:@"\"Invalid enrollment code\""]) {
+    if ([responseStr isEqualToString:@"\"Invalid parameter: enrollment_code is invalid or expired\""]) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
 
@@ -108,7 +111,8 @@
     else if (responseDict) {
         
         data.token=[responseDict valueForKey:@"enrollment_token"];
-        if (data.token) {
+        data.authToken =[responseDict valueForKey:@"token"];
+        if (data.authToken) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ValidateUserViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"ValidateUserVC"];
             vc.dob = [responseDict valueForKey:@"date_of_birth"];

@@ -26,6 +26,7 @@
     User *data;
     data = [User sharedManager];
     [data setDevicId:uniqueIdentifier];
+    [data setClient_id:@"10ba5c72-1463-42f5-8a27-61f815d7d552"];
     [data setStausBarClr:[data colorWithHexString:@"e78216"]];
     [data setBgClr:[data colorWithHexString:@"e78156"]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

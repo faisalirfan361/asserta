@@ -11,6 +11,7 @@
 @interface User : NSObject
 @property(strong,nonatomic)NSString * devicId;
 @property(strong,nonatomic)NSString  *username;
+@property(strong,nonatomic)NSString  *client_id;
 @property(strong,nonatomic)NSString  *token;
 @property(strong,nonatomic)NSString  *birthDate;
 @property(strong,nonatomic)NSString  *authToken;

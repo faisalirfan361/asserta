@@ -65,19 +65,19 @@
 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/authentication"]];
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/authentication"]];
     
     NSDictionary *parametersDictionary = @{
-                                          @"client_id": @"asdf1234",
-                                        @"device_uid":@"364364636747364",
-                                        @"enrollment_code":data.token,
+                                           @"client_id": data.client_id,
+                                           @"device_uid":data.devicId,
+                                           @"enrollment_code":data.authToken,
                                            @"usn":self.userNameTextField.text,
                                            @"pwd":self.passwordTextField.text
                                            };
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
+    [request setHTTPMethod:@"PUT"];
     [request setHTTPBody:postData];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [connection start];

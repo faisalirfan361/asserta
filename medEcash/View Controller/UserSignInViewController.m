@@ -57,10 +57,10 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         NSMutableURLRequest *request = [NSMutableURLRequest
-                                        requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/authentication"]];
+                                        requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/authentication"]];
         
         NSDictionary *parametersDictionary = @{
-                                               @"client_id": @"IOS",
+                                               @"client_id": data.client_id,
                                                @"device_uid":data.devicId,
                                                @"usn":self.userNameTxtField.text,
                                                @"pwd":self.passwordTxtField.text
@@ -124,7 +124,7 @@
         
     }
     else if (responseDict) {
-        data.authToken = [responseDict valueForKey:@"access_token"];
+        data.authToken = [responseDict valueForKey:@"token"];
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             SWRevealViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"revealVC"];
             [self.navigationController pushViewController:vc animated:YES];

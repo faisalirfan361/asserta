@@ -308,10 +308,10 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/resources"]];
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/resources"]];
     
     NSDictionary *parametersDictionary = @{
-                                           @"client_id": @"asdf1234",
+                                           @"client_id": data.client_id,
                                            @"device_uid":data.devicId,
                                            @"token":data.authToken,
                                            @"resource_type":@"all"
