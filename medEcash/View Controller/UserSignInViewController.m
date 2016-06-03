@@ -123,6 +123,10 @@
         [alert show];
         
     }
+    else if ([responseStr isEqualToString:@"Invalid parameters: wrong username or password"]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
     else if (responseDict) {
         data.authToken = [responseDict valueForKey:@"token"];
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

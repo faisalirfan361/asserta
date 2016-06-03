@@ -66,13 +66,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [responseDict count];
+    return [[responseDict valueForKey:@"cases"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-   return  [[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:section]count];
+    if ([[responseDict valueForKey:@"cases"]valueForKey:@"procedures"] != nil) {
+        NSDictionary *dick = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
+        if ([dick count] > 0) {
+            return  [[[[responseDict valueForKey:@"cases"]valueForKey:@"procedures"]objectAtIndex:section]count];
+        }
+    }
+    return 0;
 }
 
 
