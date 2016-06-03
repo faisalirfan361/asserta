@@ -1418,6 +1418,18 @@
                                     <outlet property="delegate" destination="JTd-89-1J3" id="ZSS-6b-1Vh"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjA-gB-hV5">
+                                <rect key="frame" x="0.0" y="165" width="320" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You do not have any procedures available." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuW-vi-loo">
+                                        <rect key="frame" x="0.0" y="44" width="321" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.56554418103448278" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfX-uc-aJu">
                                 <rect key="frame" x="244" y="105" width="60" height="40"/>
                                 <color key="backgroundColor" red="0.60285818579999995" green="0.2148501991" blue="0.1723079293" alpha="1" colorSpace="calibratedRGB"/>
@@ -1451,10 +1463,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="UfX-uc-aJu" firstAttribute="top" secondItem="T47-SC-htM" secondAttribute="bottom" constant="85" id="Ao3-3R-GQI"/>
+                            <constraint firstItem="SjA-gB-hV5" firstAttribute="centerY" secondItem="6pc-sD-Hzl" secondAttribute="centerY" id="GH8-Ix-W20"/>
                             <constraint firstItem="dm2-zN-W7M" firstAttribute="top" secondItem="aDu-sE-KjS" secondAttribute="bottom" id="SEk-mV-rxK"/>
                             <constraint firstItem="aDu-sE-KjS" firstAttribute="leading" secondItem="6pc-sD-Hzl" secondAttribute="leading" id="Z5M-lR-YoR"/>
                             <constraint firstItem="aDu-sE-KjS" firstAttribute="top" secondItem="6pc-sD-Hzl" secondAttribute="top" id="gpT-wF-B75"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UfX-uc-aJu" secondAttribute="trailing" id="rjF-id-Ky7"/>
+                            <constraint firstItem="SjA-gB-hV5" firstAttribute="centerX" secondItem="6pc-sD-Hzl" secondAttribute="centerX" id="ug3-sX-gbx"/>
                             <constraint firstAttribute="trailing" secondItem="aDu-sE-KjS" secondAttribute="trailing" id="yet-lj-EjI"/>
                         </constraints>
                     </view>
@@ -1463,6 +1477,7 @@
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="noProcedureView" destination="SjA-gB-hV5" id="Gek-Ot-CNA"/>
                         <outlet property="payBtn" destination="UfX-uc-aJu" id="2ji-dK-JYK"/>
                         <outlet property="sidebarButton" destination="0qV-FA-kcw" id="GiI-EY-6OY"/>
                         <outlet property="tableView" destination="aDu-sE-KjS" id="ZCt-zg-psC"/>

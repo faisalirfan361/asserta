@@ -15,6 +15,7 @@
 
 @implementation MainViewController
 - (void)viewWillAppear:(BOOL)animated {
+    self.noProcedureView.hidden = YES;
     
     [self.navigationController.navigationBar setBarTintColor:data.bgClr];
 }
@@ -66,11 +67,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
+    if ([[responseDict valueForKey:@"cases"] count] == 0) {
+        self.noProcedureView.hidden = NO;
+    }
     return [[responseDict valueForKey:@"cases"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     // Return the number of rows in the section.
     if ([[responseDict valueForKey:@"cases"]valueForKey:@"procedures"] != nil) {
         NSDictionary *dick = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
