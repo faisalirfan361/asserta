@@ -13,7 +13,7 @@
 #import "UserSignInViewController.h"
 #import "User.h"
 @interface ValidateUserViewController : UIViewController
-
+@property (nonatomic, retain) IBOutlet UIImageView *logo;
 @property (nonatomic , strong)  NSString *dob;
  
 @property (weak, nonatomic) IBOutlet UILabel *dobLabel;

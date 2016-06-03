@@ -27,8 +27,46 @@
     data = [User sharedManager];
     [data setDevicId:uniqueIdentifier];
     [data setClient_id:@"10ba5c72-1463-42f5-8a27-61f815d7d552"];
-    [data setStausBarClr:[data colorWithHexString:@"e78216"]];
-    [data setBgClr:[data colorWithHexString:@"e78156"]];
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"] == nil) {
+        [data setStausBarClr:[data colorWithHexString:@"6b322a"]];
+    }
+    
+    else {
+    
+    [data setStausBarClr:[data colorWithHexString:[[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"]]];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"] == nil) {
+        [data setBgClr:[data colorWithHexString:@"84271a"]];
+    }
+    else {
+    [data setBgClr:[data colorWithHexString:[[NSUserDefaults standardUserDefaults]
+stringForKey:@"colorScheme2"]]];
+    }
+    
+    //
+    //
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"logged_in"]) {
+     //   go as normal
+    } else {
+    //already used verification code soe show sign in view controller
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+        UINavigationController * navVC =[[UINavigationController alloc]initWithRootViewController:vc];
+        [navVC.navigationBar setHidden:YES];
+        self.window.rootViewController =navVC;
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] == nil ||[[[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] isEqualToString:@"logo"] ) {
+        
+        data.logoUrlstr = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
+        
+    }
+    
+    
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {

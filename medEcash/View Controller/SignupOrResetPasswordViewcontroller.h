@@ -17,6 +17,7 @@
     NSMutableDictionary * responseDict;
     User *data;
 }
+@property (nonatomic, retain) IBOutlet UIImageView *logo;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;

@@ -19,6 +19,7 @@
     NSMutableDictionary * responseDict;
     User *data;
 }
+@property (nonatomic, retain) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UITextField *verificationCodeTextField;
 @property (strong, nonatomic) NSMutableData *responseData;
 - (IBAction)verificationBtnAction:(id)sender;

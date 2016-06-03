@@ -167,8 +167,8 @@
     }
     
     ((UILabel *)[cell viewWithTag:110]).text = [data1 valueForKey:@"case_name"];
-    ((UILabel *)[cell viewWithTag:111]).text = [[data1 valueForKey:@"total_cost"] stringValue];
-    ((UILabel *)[cell viewWithTag:112]).text = [[data1 valueForKey:@"your_cost"] stringValue];
+    ((UILabel *)[cell viewWithTag:111]).text = [data1 valueForKey:@"total_cost"];
+    ((UILabel *)[cell viewWithTag:112]).text = [data1 valueForKey:@"your_cost"];
     UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
     [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
     return cell.contentView;
@@ -363,9 +363,76 @@
     else {
     responseDict = [[NSMutableDictionary alloc]init];
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+        
+        
+        
+        // Saving Color Schemes and logo to NAUser Defualts
+        
+        // [[responseDict objectForKey:@"style"]objectForKey:@"logo"]
+        //[[responseDict objectForKey:@"style"]objectForKey:@"logo"]
+        //[[responseDict objectForKey:@"style"]objectForKey:@"logo"]
+        //  logo = "";
+        //"plan_color_1" = "";
+       // "plan_color_2" = "";
+        NSString * logoUrl;
+        NSString * planColor1;
+        NSString *planColor2 ;
+        if ([[responseDict objectForKey:@"style"]objectForKey:@"logo"] == [NSNull null] || [[[responseDict objectForKey:@"style"]objectForKey:@"logo"] isEqualToString:@""]) {
+            
+            logoUrl =@"logo";
+            
+        }
+        else {
+        logoUrl = [[responseDict objectForKey:@"style"]objectForKey:@"logo"];
+        }
+        
+        if ([[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"] == [NSNull null] || [[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"] isEqualToString:@""]) {
+        planColor1 = @"6b322a";
+        
+        
+        }
+        else {
+        
+        planColor1 = [[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"];
+        }
+        
+        if ([[responseDict objectForKey:@"style"]objectForKey:@"plan_color_2"] == [NSNull null] || [[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_2"] isEqualToString:@""]) {
+          planColor2 = @"84271a";
+            
+        }
+        
+        else {
+        
+        planColor2 = [[responseDict objectForKey:@"style"]objectForKey:@"plan_color_2"];
+        }
+        
+        
+        
+        // save Logo url
+        
+        
+        [[NSUserDefaults standardUserDefaults] setObject:logoUrl forKey:@"appLogo"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        // save color scheme 1
+        
+        
+        [[NSUserDefaults standardUserDefaults] setObject:planColor1 forKey:@"colorScheme1"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        // save color scheme 1
+        
+        
+        [[NSUserDefaults standardUserDefaults] setObject:planColor2 forKey:@"colorScheme2"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        
         data = [User sharedManager];
-        [data setStausBarClr:[data colorWithHexString:[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"]]];
-        [data setBgClr:[data colorWithHexString:[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_2"]]];
+        [data setStausBarClr:[data colorWithHexString:planColor1]];
+        [data setBgClr:[data colorWithHexString:planColor2]];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
      if (responseDict) {
          

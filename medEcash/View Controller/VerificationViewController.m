@@ -13,7 +13,8 @@
     [super viewDidLoad];
 //   //self.
 //    
-//    
+//
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 //    CALayer *border = [CALayer layer];
 //    CGFloat borderWidth = 2;
 //    border.borderColor = [UIColor lightGrayColor].CGColor;
@@ -26,6 +27,31 @@
     responseDict = [[NSMutableDictionary alloc]init];
     data = [User sharedManager];
     self.view.backgroundColor = data.bgClr;
+    
+    
+    
+    
+    // set Logo BG
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] == nil ||[[[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] isEqualToString:@"logo"] ) {
+        
+        //data.logoUrlstr = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
+        
+        self.logo.image = [UIImage imageNamed:@"logo"];
+        
+    }
+    else
+    {
+        
+        
+        NSString *ImageURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
+       self.logo.image = [UIImage imageWithData:imageData];
+        
+        
+    }
+    
 }
 - (IBAction)verificationBtnAction:(id)sender {
     
@@ -108,7 +134,14 @@
         [alert show];
 
     }
+    if (error == nil) {
+        //
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
+    }
     else if (responseDict) {
+        
+        // set token used
+        
         
         data.token=[responseDict valueForKey:@"enrollment_token"];
         data.authToken =[responseDict valueForKey:@"token"];

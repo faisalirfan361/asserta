@@ -23,6 +23,30 @@
     User * data;
     data =[User sharedManager];
     self.view.backgroundColor = data.bgClr;
+    
+    
+    
+    // set Logo BG
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] == nil ||[[[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] isEqualToString:@"logo"] ) {
+        
+        //data.logoUrlstr = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
+        
+        self.logo.image = [UIImage imageNamed:@"logo"];
+        
+    }
+    else
+    {
+        
+        
+        NSString *ImageURL = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]];
+        self.logo.image = [UIImage imageWithData:imageData];
+        
+        
+    }
+
 }
 
 - (IBAction)validationNoBtnAction:(id)sender {
