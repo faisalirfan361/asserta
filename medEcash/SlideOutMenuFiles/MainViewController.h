@@ -23,6 +23,7 @@
     User *data;
     NSMutableArray * data2;
     NSMutableArray * data1;
+    UIView  *popup;
     
 }
 - (IBAction)payBtnAction:(id)sender;

@@ -55,7 +55,16 @@
 
     data = [User sharedManager];
     [self callProcecduresData];
-}
+    
+    popup =[[UIView alloc]initWithFrame:CGRectMake(15, self.view.frame.size.height/2, self.view.frame.size.width-30, 140)];
+    popup.backgroundColor =[UIColor whiteColor];
+    
+    UILabel *text = [[UILabel alloc]initWithFrame:CGRectMake(10, 50, popup.frame.size.width-20, 30)];
+    text.text =@"You do not have any procedures available.";
+    text.textColor = [UIColor blackColor];
+    [popup addSubview:text];
+    
+ }
 
 - (void)didReceiveMemoryWarning
 {
@@ -442,6 +451,11 @@
      if (responseDict) {
          
          dataArray = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
+         if ([[dataArray objectAtIndex:0] count] == 0) {
+             [[KGModal sharedInstance]showWithContentView:popup];
+             [KGModal sharedInstance].closeButtonType  =KGModalCloseButtonTypeRight;
+         }
+         
          [self.tableView reloadData];
      }}
     
