@@ -70,7 +70,7 @@
     NSDictionary *parametersDictionary = @{
                                            @"client_id": data.client_id,
                                            @"device_uid":data.devicId,
-                                           @"enrollment_code":data.authToken,
+                                           @"token":data.authToken,
                                            @"usn":self.userNameTextField.text,
                                            @"pwd":self.passwordTextField.text
                                            };
@@ -123,12 +123,17 @@ else {
     NSLog(@"response data - %@", responseStr);
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    responseStr = [responseStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([responseStr isEqualToString:@"\"Please specify another USN\""]) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
         
     }
-    else if (responseDict) {
+    else if ([responseStr isEqualToString:@"\"Invalid parameter: token is invalid or expired\""]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    else if ([responseStr isEqualToString:@""]) {
 
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
