@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03656A29A6FD2730D84D44F1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE18580F939605D0F3B02307 /* libPods.a */; };
+		182184971D0366450008D34E /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182184961D0366450008D34E /* ResetPasswordViewController.m */; };
 		183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88261CF06AD50023102B /* CallUsViewcontroller.m */; };
 		183B88321CF0EE690023102B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B88311CF0EE690023102B /* User.m */; };
 		18569B041CE914B9004FFFC1 /* ValidateUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18569B031CE914B9004FFFC1 /* ValidateUserViewController.m */; };
@@ -29,7 +30,6 @@
 		18AA1C181CF4E579001F7ED0 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C0C1CF4E579001F7ED0 /* PhotoViewController.m */; };
 		18AA1C191CF4E579001F7ED0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */; };
 		18AA1C1A1CF4E579001F7ED0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */; };
-		18AA1C1D1CF4EED1001F7ED0 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */; };
 		18C3CA651CE4F9AF00D17136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CA641CE4F9AF00D17136 /* main.m */; };
 		18C3CA681CE4F9AF00D17136 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CA671CE4F9AF00D17136 /* AppDelegate.m */; };
 		18C3CA6E1CE4F9AF00D17136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C3CA6C1CE4F9AF00D17136 /* Main.storyboard */; };
@@ -40,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		182184951D0366450008D34E /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPasswordViewController.h; path = ../Singleton/ResetPasswordViewController.h; sourceTree = "<group>"; };
+		182184961D0366450008D34E /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = ../Singleton/ResetPasswordViewController.m; sourceTree = "<group>"; };
 		183B88241CF052140023102B /* dejavu-sans.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dejavu-sans.bold.ttf"; sourceTree = "<group>"; };
 		183B88251CF06AD50023102B /* CallUsViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallUsViewcontroller.h; sourceTree = "<group>"; };
 		183B88261CF06AD50023102B /* CallUsViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallUsViewcontroller.m; sourceTree = "<group>"; };
@@ -74,8 +76,6 @@
 		18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		18AA1C0F1CF4E579001F7ED0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		18AA1C1B1CF4EED1001F7ED0 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordViewController.h; sourceTree = "<group>"; };
-		18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		18C3CA601CE4F9AF00D17136 /* medEcash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = medEcash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C3CA641CE4F9AF00D17136 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18C3CA661CE4F9AF00D17136 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +144,8 @@
 				18AA1C0E1CF4E579001F7ED0 /* SidebarViewController.m */,
 				18AA1C0F1CF4E579001F7ED0 /* SWRevealViewController.h */,
 				18AA1C101CF4E579001F7ED0 /* SWRevealViewController.m */,
+				182184951D0366450008D34E /* ResetPasswordViewController.h */,
+				182184961D0366450008D34E /* ResetPasswordViewController.m */,
 			);
 			path = SlideOutMenuFiles;
 			sourceTree = "<group>";
@@ -161,8 +163,6 @@
 				18569B0B1CE92491004FFFC1 /* UserSignInViewController.m */,
 				18569B0D1CE92501004FFFC1 /* PaymentsViewController.h */,
 				18569B0E1CE92501004FFFC1 /* PaymentsViewController.m */,
-				18AA1C1B1CF4EED1001F7ED0 /* ResetPasswordViewController.h */,
-				18AA1C1C1CF4EED1001F7ED0 /* ResetPasswordViewController.m */,
 				183B88251CF06AD50023102B /* CallUsViewcontroller.h */,
 				183B88261CF06AD50023102B /* CallUsViewcontroller.m */,
 			);
@@ -357,12 +357,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AA1C191CF4E579001F7ED0 /* SidebarViewController.m in Sources */,
-				18AA1C1D1CF4EED1001F7ED0 /* ResetPasswordViewController.m in Sources */,
 				18569B091CE9201F004FFFC1 /* SignupOrResetPasswordViewcontroller.m in Sources */,
 				18F8C2CF1CF60257001D3149 /* KGModal.m in Sources */,
 				18569B0C1CE92491004FFFC1 /* UserSignInViewController.m in Sources */,
 				189813481CE4FD3500F7A27A /* VerificationViewController.m in Sources */,
 				18AA1C131CF4E579001F7ED0 /* MainViewController.m in Sources */,
+				182184971D0366450008D34E /* ResetPasswordViewController.m in Sources */,
 				18C3CA681CE4F9AF00D17136 /* AppDelegate.m in Sources */,
 				183B88271CF06AD50023102B /* CallUsViewcontroller.m in Sources */,
 				18AA1C1A1CF4E579001F7ED0 /* SWRevealViewController.m in Sources */,
@@ -482,14 +482,14 @@
 			baseConfigurationReference = 6A1B9E256D22F5A968B1BBCB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
 				INFOPLIST_FILE = medEcash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepro.medEcash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19838184-467c-4997-8858-7459aec21fe9";
 			};
 			name = Debug;
 		};
@@ -498,14 +498,14 @@
 			baseConfigurationReference = 94E848EAE860A44E5A223029 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
 				INFOPLIST_FILE = medEcash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepro.medEcash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19838184-467c-4997-8858-7459aec21fe9";
 			};
 			name = Release;
 		};

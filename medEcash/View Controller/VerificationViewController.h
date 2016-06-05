@@ -15,9 +15,11 @@
 #import "CallUsViewcontroller.h"
 #import "User.h"
 #import "SignupOrResetPasswordViewcontroller.h"
+#import "ResetPasswordViewController.h"
 @interface VerificationViewController : UIViewController<UITextFieldDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate> {
     NSMutableDictionary * responseDict;
     User *data;
+    int code;
 }
 @property (nonatomic, retain) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UITextField *verificationCodeTextField;

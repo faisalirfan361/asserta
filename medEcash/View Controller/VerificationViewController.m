@@ -109,6 +109,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.responseData = [NSMutableData data];
+    code = 0;
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    code = (int)[httpResponse statusCode];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -134,29 +137,37 @@
         [alert show];
 
     }
-    if (error == nil) {
+    if (error == nil || code == 200) {
         //
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
     }
-    else if (responseDict) {
+    
+     if (code == 200) {
         
-        // set token used
-        
-        
+        // set token use
         data.token=[responseDict valueForKey:@"enrollment_token"];
         data.authToken =[responseDict valueForKey:@"token"];
-        if (data.authToken) {
+        data.birthDate = [responseDict valueForKey:@"date_of_birth"];
+        if (data.authToken != (id)[NSNull null] && data.birthDate != (id)[NSNull null] ) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ValidateUserViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"ValidateUserVC"];
             vc.dob = [responseDict valueForKey:@"date_of_birth"];
             [self.navigationController pushViewController:vc animated:YES];
+//            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
-     
-    }
+        else if (data.birthDate == (id)[NSNull null]) {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     else {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
-        [self.navigationController pushViewController:vc animated:YES];
+                    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+                    [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
 
     

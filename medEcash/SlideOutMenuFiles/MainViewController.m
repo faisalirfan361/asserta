@@ -316,7 +316,7 @@
 
 - (IBAction)payBtnAction:(id)sender {
     // Generate content view to present
-    UIAlertView * Alert = [[UIAlertView alloc]initWithTitle:@"Cumming GA Physical Therapy Clinic" message:@"Are you sure you want to pay?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Pay", nil];
+    UIAlertView * Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Are you sure you want to pay?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Pay", nil];
     
     [Alert show];
     
@@ -349,6 +349,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.responseData = [NSMutableData data];
+    code = 0;
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    code = (int)[httpResponse statusCode];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -366,15 +369,43 @@
     NSError * error;
     NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     NSLog(@"response data - %@", responseStr);
-    if (isToPay) {
-        payResponseDict = [[NSMutableDictionary alloc]init];
-        payResponseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         // call procedure API again
-        [self callProcecduresData];
+    if (isToPay ) {
+        if (code == 200) {
+            payResponseDict = [[NSMutableDictionary alloc]init];
+            payResponseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            
+            [payIdsArray removeAllObjects];
+            
+            for (int i = 0 ; i<selectedCellsArray.count-1; i++) {
+                
+                if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Check"])
+                {
+                    
+                    [selectedCellsArray replaceObjectAtIndex:i withObject:@"Uncheck"];
+                    
+                }
+                
+            }
+            [self.tableView reloadData];
+            self.payBtn.hidden = YES;
+            
+            // call procedure API again
+            [self callProcecduresData];
+
+        }
+        else
+        {
+        
+        
+        
+        }
         
     }
     else {
+        
+        
+        
     responseDict = [[NSMutableDictionary alloc]init];
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
         
@@ -447,9 +478,8 @@
         data = [User sharedManager];
         [data setStausBarClr:[data colorWithHexString:planColor1]];
         [data setBgClr:[data colorWithHexString:planColor2]];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+       [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
      if (responseDict) {
-         
          dataArray = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
          if ([[dataArray objectAtIndex:0] count] == 0) {
              [[KGModal sharedInstance]showWithContentView:popup];
@@ -470,21 +500,39 @@
     }
     else if (buttonIndex == 1) {
      // Call Pay Api here
+        [self callPayAction];
+        isToPay =YES;
     }
 }
 - (void) callPayAction {
     isToPay = YES;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    
+   // int i[] = payIdsArray;
+    
+   //po str int len = sizeof(payIdsArray) / sizeof(int);
+
+//    NSMutableDictionary *postDict = [[NSMutableDictionary alloc]init];
+//    [postDict setValue:rollArray forKey:@"existingRoll"];
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:nil];
+//    
+//    // Checking the format
+//    NSLog(@"%@",[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    
+    
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/UAT/actions"]];
+                                    requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/actions"]];
+    //NSString * payids =[NSString stringWithFormat:@"[%@Z]",payIdsArray];
+    NSString * pays = [payIdsArray componentsJoinedByString:@","];
+    NSString * ids =[NSString stringWithFormat:@"[%@]",pays];
     
     NSDictionary *parametersDictionary = @{
-                                           @"client_id": @"asdf1234",
+                                           @"client_id": data.client_id,
                                            @"device_uid":data.devicId,
                                            @"token":data.authToken,
                                            @"action_code":@"pay" ,
-                                           @"data" :@"AddDataArrayValues"
+                                           @"data" :ids
                                            };
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
