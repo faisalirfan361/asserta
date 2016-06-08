@@ -28,7 +28,8 @@
     [data setDevicId:uniqueIdentifier];
     [data setClient_id:@"10ba5c72-1463-42f5-8a27-61f815d7d552"];
     
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"] == nil) {
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"] == nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"] length] >8) {
+         data.statusBarCrlStr = @"6b322a";
         [data setStausBarClr:[data colorWithHexString:@"6b322a"]];
     }
     
@@ -37,12 +38,15 @@
     [data setStausBarClr:[data colorWithHexString:[[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme1"]]];
     }
     
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"] == nil) {
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"] == nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"]length ]> 8 ) {
+        
+        data.bgBarCrlStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"];
+        data.bgClr =[data colorWithHexString:@"84271a"];
         [data setBgClr:[data colorWithHexString:@"84271a"]];
     }
     else {
-    [data setBgClr:[data colorWithHexString:[[NSUserDefaults standardUserDefaults]
-stringForKey:@"colorScheme2"]]];
+        data.bgClr =[data colorWithHexString:[[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"]];
+        data.bgBarCrlStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"colorScheme2"];
     }
     
     //

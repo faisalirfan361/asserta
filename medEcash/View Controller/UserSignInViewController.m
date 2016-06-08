@@ -31,9 +31,10 @@
     border1.borderWidth = borderWidth1;
     [self.passwordTxtField.layer addSublayer:border1];
     self.passwordTxtField.layer.masksToBounds = YES;
-      data = [User sharedManager];
+    data = [User sharedManager];
+    
       self.view.backgroundColor = data.bgClr;
-    // set Logo BG
+   // set Logo BG
     
     
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] == nil ||[[[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"] isEqualToString:@"logo"] ) {
@@ -54,6 +55,12 @@
         
     }
 
+    
+    //
+    
+   self.view.backgroundColor  = [data colorWithHexString:@"84271a"];
+    
+   // self.view.backgroundColor = [UIColor whiteColor];
 }
 - (IBAction)showPasswordTickBtnAction:(id)sender {
     

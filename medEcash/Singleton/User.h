@@ -17,6 +17,8 @@
 @property(strong,nonatomic)NSString  *authToken;
 @property (strong,nonatomic)UIColor  *stausBarClr;
 @property (strong,nonatomic)UIColor  *bgClr;
+@property (strong,nonatomic)NSString *statusBarCrlStr;
+@property (strong,nonatomic)NSString *bgBarCrlStr;
 @property (strong,nonatomic)NSString *logoUrlstr;
 @property (strong,nonatomic)NSString *helpLine;
 -(UIColor*)colorWithHexString:(NSString*)hex;

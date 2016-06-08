@@ -76,10 +76,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if ([[responseDict valueForKey:@"cases"] count] == 0) {
-        self.noProcedureView.hidden = NO;
-    }
-    return [[responseDict valueForKey:@"cases"] count];
+        return [[responseDict valueForKey:@"cases"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,6 +95,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:indexPath.section];
     data1 = [data1 valueForKey:@"procedures"];
     data1 = [data1 objectAtIndex:indexPath.row];
@@ -479,14 +478,16 @@
         [data setStausBarClr:[data colorWithHexString:planColor1]];
         [data setBgClr:[data colorWithHexString:planColor2]];
        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-     if (responseDict) {
-         dataArray = [[responseDict valueForKey:@"cases"]valueForKey:@"procedures"];
-         if ([[dataArray objectAtIndex:0] count] == 0) {
+     if (responseDict && code == 200) {
+         if ([[responseDict valueForKey:@"cases"] count] == 0) {
+             // self.noProcedureView.hidden = NO;
              [[KGModal sharedInstance]showWithContentView:popup];
              [KGModal sharedInstance].closeButtonType  =KGModalCloseButtonTypeRight;
          }
+
+             [self.tableView reloadData];
+        // }
          
-         [self.tableView reloadData];
      }}
     
     
