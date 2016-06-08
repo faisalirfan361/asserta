@@ -38,7 +38,7 @@
         
         //data.logoUrlstr = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
         
-        self.logo.image = [UIImage imageNamed:@"logo"];
+        //self.logo.image = [UIImage imageNamed:@"logo"];
         
     }
     else
@@ -142,6 +142,16 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
     }
     
+    
+    
+    
+    if (responseDict == nil){
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else
+    {
+    
      if (code == 200) {
         
         // set token use
@@ -170,7 +180,7 @@
 
     }
 
-    
+    }
     
 }
 

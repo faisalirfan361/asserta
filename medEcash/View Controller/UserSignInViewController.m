@@ -41,7 +41,7 @@
         
         //data.logoUrlstr = [[NSUserDefaults standardUserDefaults] stringForKey:@"appLogo"];
         
-        self.logo.image = [UIImage imageNamed:@"logo"];
+     //   self.logo.image = [UIImage imageNamed:@"logo"];
         
     }
     else

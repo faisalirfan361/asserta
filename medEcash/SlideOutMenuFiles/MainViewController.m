@@ -154,13 +154,14 @@
     mainTitleLbk.textColor= [UIColor blackColor];
     mainTitleLbk.text = [data1 valueForKey:@"provider"];
     ((UILabel *)[cell viewWithTag:103]).text = [data1 valueForKey:@"description"];
-    ((UILabel *)[cell viewWithTag:104]).text = [NSString stringWithFormat:@"%@ %@ %@ %@, %@",
+    ((UILabel *)[cell viewWithTag:104]).text = [NSString stringWithFormat:@"%@ %@ ",
                                                 [data1 valueForKey:@"line_1"],
-                                                [data1 valueForKey:@"line_2"],
-                                                [data1 valueForKey:@"city"],
-                                                [data1 valueForKey:@"state"],
-                                                [data1 valueForKey:@"zip"]];
-    ((UILabel *)[cell viewWithTag:105]).text = [data1 valueForKey:@"phone"];
+                                                [data1 valueForKey:@"line_2"]
+                                                ];
+    ((UILabel *)[cell viewWithTag:109]).text = [NSString stringWithFormat:@"%@, %@", [data1 valueForKey:@"city"],[data1 valueForKey:@"state"]];
+    
+    // [data1 valueForKey:@"zip"]
+    ((UILabel *)[cell viewWithTag:105]).text = [NSString stringWithFormat:@"%@ ,%@" ,[data1 valueForKey:@"zip"],[data1 valueForKey:@"phone"]];
     // handeling check uncheck buttons
     return cell;
     
@@ -180,8 +181,8 @@
     }
     
     ((UILabel *)[cell viewWithTag:110]).text = [data1 valueForKey:@"case_name"];
-    ((UILabel *)[cell viewWithTag:111]).text = [data1 valueForKey:@"total_cost"];
-    ((UILabel *)[cell viewWithTag:112]).text = [data1 valueForKey:@"your_cost"];
+    ((UILabel *)[cell viewWithTag:111]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
+    ((UILabel *)[cell viewWithTag:112]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
     UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
     [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
     return cell.contentView;
@@ -198,7 +199,7 @@
     if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
     {
         
-        return 100;
+        return 120;
     }
     else
     {
@@ -423,11 +424,11 @@
         NSString *planColor2 ;
         if ([[responseDict objectForKey:@"style"]objectForKey:@"logo"] == [NSNull null] || [[[responseDict objectForKey:@"style"]objectForKey:@"logo"] isEqualToString:@""]) {
             
-            logoUrl =@"logo";
+            logoUrl =@"logo1";
             
         }
         else {
-        logoUrl = [[responseDict objectForKey:@"style"]objectForKey:@"logo"];
+        logoUrl = [NSString stringWithFormat:@"https://assertahealth-debhersom.c9.io%@",[[responseDict objectForKey:@"style"]objectForKey:@"logo"]];
         }
         
         if ([[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"] == [NSNull null] || [[[responseDict objectForKey:@"style"]objectForKey:@"plan_color_1"] isEqualToString:@""]) {
