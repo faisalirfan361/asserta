@@ -100,15 +100,15 @@
                                             requestWithURL:[NSURL URLWithString:@"https://assertahealth-debhersom.c9.io/API/V1/authentication"]];
     
             NSDictionary *parametersDictionary = @{
-                                
                                                    @"device_uid":data.devicId,
-                                                   @"enrollment_code":data.token,
+                                                   @"token":data.authToken,
+                                                   @"client_id":data.client_id,
                                                    @"pwd":self.passwordTxt.text,
                                                    };
             NSError *error;
             NSData *postData = [NSJSONSerialization dataWithJSONObject:parametersDictionary options:0 error:&error];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPMethod:@"POST"];
+            [request setHTTPMethod:@"PUT"];
             [request setHTTPBody:postData];
             NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
             [connection start];
@@ -135,6 +135,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.responseData = [NSMutableData data];
+    code = 0;
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    code = (int)[httpResponse statusCode];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -154,16 +157,18 @@
     NSLog(@"response data - %@", responseStr);
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([responseStr isEqualToString:@"\"Please specify another USN\""]) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-        
+    if (code == 200) {
+       
+                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+                [data setMainRootController:vc];
     }
-    else if (responseDict) {
+    else {
         
-//        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
-//        [self.navigationController pushViewController:vc animated:YES];
+
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+
         
     }
     

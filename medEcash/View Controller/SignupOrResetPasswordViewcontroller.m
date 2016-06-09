@@ -131,6 +131,11 @@ else {
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.responseData = [NSMutableData data];
+    code = 0;
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    code = (int)[httpResponse statusCode];
+
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -156,10 +161,13 @@ else {
         [alert show];
         
     }
-    else if ([responseStr isEqualToString:@"\"Invalid parameter: token is invalid or expired\""]) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
+//    else if ([responseStr isEqualToString:@"\"Invalid parameter: token is invalid or expired\""]) {
+//        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//        [alert show];
+//    }
+    
+    
+    
     else if ([responseStr isEqualToString:@""]) {
 
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -169,7 +177,10 @@ else {
     }
     
     
-    
+    if (code != 200) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Username already taken or invalid.Try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
 }
 
 @end

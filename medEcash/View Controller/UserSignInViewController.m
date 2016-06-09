@@ -128,6 +128,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.responseData = [NSMutableData data];
+    code = 0;
+    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+    code = (int)[httpResponse statusCode];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -142,6 +145,13 @@
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+   
+    
+    if (code != 200) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid username or password" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    
     NSError * error;
     NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     NSLog(@"response data - %@", responseStr);

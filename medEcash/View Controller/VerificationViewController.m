@@ -132,29 +132,27 @@
     NSLog(@"response data - %@", responseStr);
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    if ([responseStr isEqualToString:@"\"Invalid parameter: enrollment_code is invalid or expired\""]) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    if (responseDict ==nil) {
+        
+        
+    }
+    
+    if (code !=200) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        self.verificationCodeTextField.text = @"";
         [alert show];
 
     }
-    if (error == nil || code == 200) {
-        //
+    if (error == nil || (code == 200 && responseDict == nil)) {
+        if (responseDict == nil) {
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+
+        }
+        else {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
-    }
-    
-    
-    
-    
-    if (responseDict == nil){
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else
-    {
-    
-     if (code == 200) {
-        
-        // set token use
+            // set token use
         data.token=[responseDict valueForKey:@"enrollment_token"];
         data.authToken =[responseDict valueForKey:@"token"];
         data.birthDate = [responseDict valueForKey:@"date_of_birth"];
@@ -169,19 +167,15 @@
         }
         else if (data.birthDate == (id)[NSNull null]) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
             ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
             [self.navigationController pushViewController:vc animated:YES];
         }
-    else {
-                    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
-                    [self.navigationController pushViewController:vc animated:YES];
+            
         }
-
-    }
-
-    }
+   
+    }}
     
-}
+
 
 @end

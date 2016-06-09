@@ -1658,8 +1658,6 @@
                                             <color key="titleColor" red="0.60285818579999995" green="0.2148501991" blue="0.1723079293" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="createAccountBtnAction:" destination="H1t-mk-cEC" eventType="touchUpInside" id="ReP-oD-RLC"/>
-                                            <action selector="createAccountBtnAction:" destination="8i2-zf-IJ7" eventType="touchUpInside" id="VGk-WQ-NdI"/>
                                             <action selector="resetPasswordBtnAction:" destination="8i2-zf-IJ7" eventType="touchUpInside" id="eQD-rJ-wu1"/>
                                         </connections>
                                     </button>

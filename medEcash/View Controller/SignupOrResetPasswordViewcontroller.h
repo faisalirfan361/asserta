@@ -16,6 +16,7 @@
     BOOL passwordShown;
     NSMutableDictionary * responseDict;
     User *data;
+    int code;
 }
 @property (nonatomic, retain) IBOutlet UIImageView *logo;
 @property (strong, nonatomic) NSMutableData *responseData;

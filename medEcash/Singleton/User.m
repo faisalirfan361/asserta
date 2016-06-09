@@ -60,4 +60,21 @@
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
 }
+- (void)setMainRootController:(UIViewController*)rootController {
+    
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    
+    [UIView
+     transitionWithView:window
+     duration:0.5
+     options:UIViewAnimationOptionTransitionFlipFromLeft
+     animations:^(void) {
+         BOOL oldState = [UIView areAnimationsEnabled];
+         [UIView setAnimationsEnabled:NO];
+         UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:rootController];
+         [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nav];
+         [UIView setAnimationsEnabled:oldState];
+     }
+     completion:nil];
+}
 @end

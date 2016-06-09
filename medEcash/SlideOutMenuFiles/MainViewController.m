@@ -36,19 +36,19 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    selectedCellsArray = [[NSMutableArray alloc]init];
-    expandCellsArray = [[NSMutableArray alloc]init];
+    
     payIdsArray = [[NSMutableArray alloc]init];
     isSelectedAll = NO;
+    
     // setting all unchecks initially
-    for(int i=0; i<5; i++)
-    {
-        [selectedCellsArray addObject:@"Uncheck"];
-    }
-    for(int i=0; i<5; i++)
-    {
-        [expandCellsArray addObject:@"Collapse"];
-    }
+//    for(int i=0; i<5; i++)
+//    {
+//        [selectedCellsArray addObject:@"Uncheck"];
+//    }
+//    for(int i=0; i<5; i++)
+//    {
+//        [expandCellsArray addObject:@"Collapse"];
+//    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.payBtn.hidden = YES;
@@ -130,22 +130,22 @@
     payToLbl.text = @"Pay to";
         [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-        if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
+        if([[[selectedCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Uncheck"])
             [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         else
             [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        
-        if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
+        // [[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"]
+        if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
             [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
         else
             [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
         
-        if ([selectedCellsArray containsObject:@"Check"]) {
-            self.payBtn.hidden = NO;
-        }
-        else {
-            self.payBtn.hidden = YES;
-        }
+//        if ([selectedCellsArray containsObject:@"Check"]) {
+//            self.payBtn.hidden = NO;
+//        }
+//        else {
+//            self.payBtn.hidden = YES;
+//        }
 
     }
     
@@ -180,12 +180,74 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    ((UILabel *)[cell viewWithTag:110]).text = [data1 valueForKey:@"case_name"];
-    ((UILabel *)[cell viewWithTag:111]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
-    ((UILabel *)[cell viewWithTag:112]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
-    UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
-    [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
-    return cell.contentView;
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 110)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    
+    UILabel * titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 12, 178, 48)];
+    titleLabel.font = [UIFont fontWithName:@"DejaVuSans" size:17];
+    titleLabel.text = [data1 valueForKey:@"case_name"];
+    UILabel * totalPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(193, 9, 53, 21)];
+    totalPriceLbl.font = [UIFont fontWithName:@"DejaVuSans" size:10];
+    totalPriceLbl.text = @"total cost";
+    
+    UILabel * totalPrice = [[UILabel alloc]initWithFrame:CGRectMake(253, 9, 53, 21)];
+    totalPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
+    totalPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
+    
+    UILabel * yourPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(194, 40, 51, 21)];
+    yourPriceLbl.font = [UIFont fontWithName:@"DejaVuSans" size:10];
+    yourPriceLbl.text = @"your cost";
+    
+    UILabel * yourPrice = [[UILabel alloc]initWithFrame:CGRectMake(253, 40, 51, 21)];
+    yourPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
+    yourPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
+
+    
+    UIView * selectallView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, tableView.frame.size.width, 47)];
+    
+    selectallView.backgroundColor =[UIColor colorWithRed:236.0/255.0 green:236.0/255.0 blue:236.0/255.0 alpha:1.0];
+    
+    
+    UIButton * selectallBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    selectallBtn.tag =section;
+    selectallBtn.frame =CGRectMake(4, 7, 30, 30);
+    [selectallBtn setBackgroundColor:[UIColor clearColor]];
+    if (isSelectedAll == NO) {
+        [selectallBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+        [selectallBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateHighlighted];
+    }
+    else {
+        [selectallBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+        [selectallBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateHighlighted];
+    }
+    [selectallBtn addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel * selectallLbl = [[UILabel alloc]initWithFrame:CGRectMake(46, 15, 72, 16)];
+    selectallLbl.font = [UIFont fontWithName:@"DejaVuSans" size:12];
+    selectallLbl.textColor =[UIColor colorWithRed:140.0/255.0 green:48.0/255.0 blue:42.0/255.0 alpha:1.0];
+    selectallLbl.text = @"Select All";
+    UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 42, selectallView.frame.size.width, 3)];
+    bottomView.backgroundColor = [UIColor lightGrayColor];
+    
+    [selectallView addSubview:bottomView];
+    [selectallView addSubview:selectallBtn];
+    [selectallView addSubview:selectallLbl];
+    [headerView addSubview:selectallView];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:totalPriceLbl];
+    [headerView addSubview:totalPrice];
+    [headerView addSubview:yourPriceLbl];
+    [headerView addSubview:yourPrice];
+    
+    
+    
+//    ((UILabel *)[cell viewWithTag:110]).text = [data1 valueForKey:@"case_name"];
+//    ((UILabel *)[cell viewWithTag:111]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
+//    ((UILabel *)[cell viewWithTag:112]).text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
+//    UIButton * selectAllButton = (UIButton *)[cell viewWithTag:105];
+//    [selectAllButton addTarget:self action:@selector(selectAll:) forControlEvents:UIControlEventTouchUpInside];
+//    selectAllButton.tag = section;
+    return headerView;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -196,7 +258,7 @@
 {
     
     
-    if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
+    if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
     {
         
         return 120;
@@ -225,17 +287,20 @@
     data1 = [data1 valueForKey:@"procedures"];
     data1 = [data1 objectAtIndex:indexPath.row];
     
-    if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
+    if([[[selectedCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Uncheck"])
     {
         [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Check"];
+        [[selectedCellsArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@"Check"];
+        // [selectedCellsArray replaceObjectAtIndex:@[indexPath.section][indexPath.row] ] withObject:@"Check"];
         [payIdsArray addObject:[data1 valueForKey:@"id"]];
+        [self showHidePayBtn];
     }
     else
     {
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-        [selectedCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Uncheck"];
+        [[selectedCellsArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@"Uncheck"];
         [payIdsArray removeObject:[data1 valueForKey:@"id"]];
+        [self showHidePayBtn];
     }
     [self.tableView reloadData];
 }
@@ -245,10 +310,10 @@
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint]; //Let's assume that you have only one section and button tags directly correspond to rows of your cells.
     //expandedCells is a mutable set declared in your interface section or private class extensiont
-    if([[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"])
+    if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
     {
         
-        [expandCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Collapse"];
+        [[expandCellsArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@"Collapse"];
         // [button backgroun:[UIImage imageNamed:@"expand"] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
         [self.tableView beginUpdates];
@@ -257,7 +322,7 @@
     else
     {
         
-        [expandCellsArray replaceObjectAtIndex:indexPath.row withObject:@"Expand"];
+        [[expandCellsArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@"Expand"];
         [button setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
@@ -266,47 +331,80 @@
 - (IBAction)menuBtnAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)selectAll:(id)sender {
+- (void)selectAll:(UIButton *)sender {
+   // NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    
     UIButton *button = (UIButton *)sender;
     //button.hidden = YES;
+    
+   // NSInteger * tag =(NSInteger)[sender tag];
+    
     if (isSelectedAll) {
         isSelectedAll = NO;
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-        for(int i=0; i<selectedCellsArray.count; i++)
+        
+        NSMutableArray * uncheck = [[NSMutableArray alloc]initWithArray:[selectedCellsArray objectAtIndex:sender.tag]];
+        for(int i=0; i<[uncheck count]; i++)
         {
             
-            if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Check"])
+            if([[uncheck objectAtIndex:i] isEqualToString:@"Check"])
             {
                 
-                [selectedCellsArray replaceObjectAtIndex:i withObject:@"Uncheck"];
+                [uncheck replaceObjectAtIndex:i withObject:@"Uncheck"];
             }
             
-            
-        }
+       }
+        
+        [selectedCellsArray removeObjectAtIndex:sender.tag];
+        [selectedCellsArray insertObject:uncheck atIndex:sender.tag];
+        
       [self.tableView reloadData];
        //[self.tableView beginUpdates];
        //[self.tableView endUpdates];
-       // [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
+      // [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
         //
     }
     
     else {
         isSelectedAll =YES;
         [button setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        for(int i=0; i<selectedCellsArray.count; i++)
+//        for(int i=0; i<selectedCellsArray.count; i++)
+//        {
+//            
+//            if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Uncheck"])
+//            {
+//                
+//                [selectedCellsArray replaceObjectAtIndex:i withObject:@"Check"];
+//            }
+//            
+//            
+//        }
+        
+        NSMutableArray * check = [[NSMutableArray alloc]initWithArray:[selectedCellsArray objectAtIndex:sender.tag]];
+        for(int i=0; i<[check count]; i++)
         {
             
-            if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Uncheck"])
+            if([[check objectAtIndex:i] isEqualToString:@"Uncheck"])
             {
                 
-                [selectedCellsArray replaceObjectAtIndex:i withObject:@"Check"];
+                [check replaceObjectAtIndex:i withObject:@"Check"];
             }
-            
             
         }
         
+        [selectedCellsArray removeObjectAtIndex:sender.tag];
+        [selectedCellsArray insertObject:check atIndex:sender.tag];
+        [self.tableView reloadData];
+        
+        
+        
+        
+        
     }
-    [self.tableView reloadData];
+    
+   // [self.tableView beginUpdates];
+   // [self.tableView endUpdates];
+    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationFade];
    // [self.tableView beginUpdates];
     //[self.tableView endUpdates];
     //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
@@ -405,11 +503,34 @@
     else {
         
         
-        
     responseDict = [[NSMutableDictionary alloc]init];
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+        selectedCellsArray = [[NSMutableArray alloc]init];
+        expandCellsArray = [[NSMutableArray alloc]init];
+        //expandCellsArray = [[NSMutableArray alloc]init];
+        for (int i=0; i<[[responseDict objectForKey:@"cases"]count]; i++) {
+            NSMutableArray *subArray = [[NSMutableArray alloc] init];
+            for (int j=0; j<[[[[responseDict objectForKey:@"cases"]objectAtIndex:i]objectForKey:@"procedures"]count]; j++) {
+                
+                [subArray addObject:@"Uncheck"];
+                
+            }
+            
+            [selectedCellsArray addObject:subArray];
+        }
         
-        
+        for (int i=0; i<[[responseDict objectForKey:@"cases"]count]; i++) {
+            NSMutableArray *subArray = [[NSMutableArray alloc] init];
+            for (int j=0; j<[[[[responseDict objectForKey:@"cases"]objectAtIndex:i]objectForKey:@"procedures"]count]; j++) {
+                
+                [subArray addObject:@"Collapse"];
+                
+            }
+            
+            [expandCellsArray addObject:subArray];
+        }
+
+  
         
         // Saving Color Schemes and logo to NAUser Defualts
         
@@ -544,6 +665,17 @@
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [connection start];
 
+    
+    
+}
+- (void)showHidePayBtn {
+    
+    if (payIdsArray.count >0) {
+        self.payBtn.hidden =NO;
+    }
+    else {
+     self.payBtn.hidden =YES;
+    }
     
     
 }

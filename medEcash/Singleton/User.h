@@ -23,4 +23,5 @@
 @property (strong,nonatomic)NSString *helpLine;
 -(UIColor*)colorWithHexString:(NSString*)hex;
 +(User *)sharedManager;
+- (void)setMainRootController:(UIViewController*)rootController;
 @end
