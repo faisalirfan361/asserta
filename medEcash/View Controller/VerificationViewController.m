@@ -144,6 +144,8 @@
 
     }
     if (error == nil || (code == 200 && responseDict == nil)) {
+        
+        
         if (responseDict == nil) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
@@ -151,12 +153,17 @@
 
         }
         else {
+            
+            
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
             // set token use
         data.token=[responseDict valueForKey:@"enrollment_token"];
         data.authToken =[responseDict valueForKey:@"token"];
         data.birthDate = [responseDict valueForKey:@"date_of_birth"];
-        if (data.authToken != (id)[NSNull null] && data.birthDate != (id)[NSNull null] ) {
+            
+            
+            
+        if (data.birthDate != nil) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ValidateUserViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"ValidateUserVC"];
             vc.dob = [responseDict valueForKey:@"date_of_birth"];
@@ -165,16 +172,23 @@
 //            ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
 //            [self.navigationController pushViewController:vc animated:YES];
         }
-        else if (data.birthDate == (id)[NSNull null]) {
+            
+            
+        else if (data.birthDate == nil) {
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
             ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
             [self.navigationController pushViewController:vc animated:YES];
         }
             
+            
+            
         }
    
-    }}
+    }
+
+
+}
     
 
 

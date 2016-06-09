@@ -63,7 +63,7 @@
         
         
     }
-
+    self.view.backgroundColor =data.bgClr;
 }
 
 - (IBAction)showPasswordBtnAction:(id)sender {

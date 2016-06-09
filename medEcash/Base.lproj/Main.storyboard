@@ -1111,6 +1111,7 @@
                                         </state>
                                         <connections>
                                             <action selector="verificationBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhN-hf-vKc"/>
+                                            <action selector="verificationBtnAction:" destination="lMl-eA-acS" eventType="touchUpInside" id="lDZ-c7-wqA"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCb-En-I1v">
@@ -1190,6 +1191,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="sidebarButton" destination="czB-Fx-C65" id="1Os-9g-xgt"/>
+                        <outlet property="verificationCodeTextField" destination="IgM-tO-ej2" id="FuE-mh-RkL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiK-yw-dgB" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,25 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PaymentsViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ValidateUserViewController.h"
+#import "UserSignInViewController.h"
+#import "AFNetworking.h"
+#import "MBProgressHUD.h"
 #import "CallUsViewcontroller.h"
 #import "User.h"
-#import "MBProgressHUD.h"
-#import "UserSignInViewController.h"
-@interface PhotoViewController : UIViewController<UITextFieldDelegate,NSURLConnectionDataDelegate,NSURLConnectionDelegate>{
-    BOOL passwordShown;
+#import "SignupOrResetPasswordViewcontroller.h"
+#import "ResetPasswordViewController.h"
+@interface PhotoViewController : UIViewController<UITextFieldDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate> {
     NSMutableDictionary * responseDict;
     User *data;
+    int code;
 }
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-- (IBAction)showPasswordBtnAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *showPasswordBtn;
+@property (weak, nonatomic) IBOutlet UITextField *verificationCodeTextField;
+- (IBAction)verificationBtnAction:(id)sender;
+- (IBAction)iHaveAccountBtnAction:(id)sender;
 - (IBAction)helpBtnAction:(id)sender;
-- (IBAction)createAccountBtnAction:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (strong, nonatomic) NSString *photoFilename;
 @end
