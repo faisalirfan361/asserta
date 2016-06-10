@@ -133,7 +133,7 @@
     }
     
     if (code !=200) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         self.verificationCodeTextField.text = @"";
         [alert show];
         
@@ -142,9 +142,9 @@
         
         
         if (responseDict == nil) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-            self.verificationCodeTextField.text = @"";
-            [alert show];
+//            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//            self.verificationCodeTextField.text = @"";
+//            [alert show];
             
         }
         else {
@@ -167,9 +167,9 @@
                 //            ResetPasswordViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"resetPasswordVC"];
                 //            [self.navigationController pushViewController:vc animated:YES];
                 
-                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                self.verificationCodeTextField.text = @"";
-                [alert show];
+//                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//                self.verificationCodeTextField.text = @"";
+//                [alert show];
             }
             
             

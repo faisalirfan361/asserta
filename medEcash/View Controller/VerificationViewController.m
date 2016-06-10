@@ -138,7 +138,7 @@
     }
     
     if (code !=200) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         self.verificationCodeTextField.text = @"";
         [alert show];
 
