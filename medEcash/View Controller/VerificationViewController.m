@@ -138,7 +138,7 @@
     }
     
     if (code !=200) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid code , please try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         self.verificationCodeTextField.text = @"";
         [alert show];
 
@@ -147,10 +147,11 @@
         
         
         if (responseDict == nil) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged_in"];
+
             UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
             [self.navigationController pushViewController:vc animated:YES];
-
         }
         else {
             

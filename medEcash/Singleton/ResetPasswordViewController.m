@@ -163,6 +163,14 @@
                 UserSignInViewController *vc =[storyboard instantiateViewControllerWithIdentifier:@"signinVC"];
                 [data setMainRootController:vc];
     }
+    else if (code != 200 && error == nil) {
+        
+        data = [User sharedManager];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"“Please contact your Personal Health Concierge at %@", data.helpLine] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+
+        
+    }
     else {
         
 

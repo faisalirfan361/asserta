@@ -76,6 +76,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u1k-Yc-Zcd">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="WSL-fb-W6v">
                                 <rect key="frame" x="93" y="90" width="134" height="22"/>
@@ -511,6 +512,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vPa-1C-Qfp">
                                 <rect key="frame" x="93" y="122" width="134" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="TGl-Gg-m8U"/>
                                     <constraint firstAttribute="height" constant="22" id="Wsw-C4-THJ"/>
@@ -620,7 +622,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ErE-0k-LR4" firstAttribute="centerX" secondItem="Cz4-Yw-42l" secondAttribute="centerX" id="Ae5-bN-nTp"/>
                             <constraint firstItem="2Ke-Pr-69o" firstAttribute="leading" secondItem="Cz4-Yw-42l" secondAttribute="leadingMargin" id="G3F-zj-Oca"/>
@@ -1093,7 +1095,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qjQ-9j-oj6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="558"/>
-                                <color key="backgroundColor" red="0.42352941176470588" green="0.10980392156862745" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDz-WN-xFb">
                                 <rect key="frame" x="36" y="161" width="248" height="164"/>
@@ -1167,7 +1169,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.42745098039215684" green="0.10588235294117647" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HDz-WN-xFb" firstAttribute="leading" secondItem="RJg-a8-hy3" secondAttribute="leadingMargin" constant="20" id="3ep-0E-3kx"/>
                             <constraint firstItem="Ilt-dJ-3Am" firstAttribute="leading" secondItem="USm-Tv-9oI" secondAttribute="leading" id="D4m-xZ-ECS"/>

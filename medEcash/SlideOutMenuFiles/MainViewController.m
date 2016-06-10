@@ -576,7 +576,7 @@
         
         // save Logo url
         
-        
+        // service_phone
         [[NSUserDefaults standardUserDefaults] setObject:logoUrl forKey:@"appLogo"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -599,6 +599,7 @@
         data = [User sharedManager];
         [data setStausBarClr:[data colorWithHexString:planColor1]];
         [data setBgClr:[data colorWithHexString:planColor2]];
+        [data setHelpLine:[[responseDict objectForKey:@"style"]objectForKey:@"service_phone"]];
        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
      if (responseDict && code == 200) {
          if ([[responseDict valueForKey:@"cases"] count] == 0) {

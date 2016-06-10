@@ -58,7 +58,7 @@
     
     //
     
-   self.view.backgroundColor  = [data colorWithHexString:@"84271a"];
+   //self.view.backgroundColor  = [data colorWithHexString:@"84271a"];
     
    // self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -147,16 +147,17 @@
 {
    
     
-    if (code != 200) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Invalid username or password" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
-    
-    NSError * error;
+       NSError * error;
     NSString * responseStr = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     NSLog(@"response data - %@", responseStr);
     responseDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    if (code != 200) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    
+
     if ([responseStr isEqualToString:@"\"Please specify another USN\""]) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:responseStr delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];

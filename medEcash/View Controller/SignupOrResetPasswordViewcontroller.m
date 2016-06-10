@@ -178,7 +178,7 @@ else {
     
     
     if (code != 200) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Username already taken or invalid.Try again" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:error.localizedDescription delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
 }
