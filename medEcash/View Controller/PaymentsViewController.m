@@ -102,8 +102,9 @@
    
         UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
         
-        // handeling check uncheck buttons
     
+    
+    // handeling check uncheck buttons
     
        if([[selectedCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Uncheck"])
         [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
@@ -117,11 +118,11 @@
         
         
     
-       [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+      [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+      [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
 
     
-    return cell;
+      return cell;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

@@ -63,6 +63,7 @@
     text.text =@"You do not have any procedures available.";
     text.textColor = [UIColor blackColor];
     [popup addSubview:text];
+    sections =[[NSMutableArray alloc]init];
     
  }
 
@@ -119,8 +120,19 @@
     UIButton * checkBtn= (UIButton *)[cell viewWithTag:101];
     UILabel *payToLbl = (UILabel *)[cell viewWithTag:100];
     UIButton * expandBtn= (UIButton *)[cell viewWithTag:106];
-
-    if ([[data1 valueForKey:@"paid"]boolValue] ==1) {
+    [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+    //
+    if([[[selectedCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Uncheck"])
+        [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+    else
+        [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+    // [[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"]
+    if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
+        [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
+    else
+        [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
+    if ([[data1 valueForKey:@"paid"]boolValue] == 1) {
         payToLbl.text = @"";
         [checkBtn setHidden:YES];
         [expandBtn setHidden:YES];
@@ -128,25 +140,10 @@
     }
     else {
     payToLbl.text = @"Pay to";
-        [checkBtn addTarget:self action:@selector(checkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [expandBtn addTarget:self action:@selector(collapseExpandButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-        if([[[selectedCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Uncheck"])
-            [checkBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
-        else
-            [checkBtn setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        // [[expandCellsArray objectAtIndex:indexPath.row] isEqualToString:@"Expand"]
-        if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
-            [expandBtn setImage:[UIImage imageNamed:@"collapse.png"] forState:UIControlStateNormal];
-        else
-            [expandBtn setImage:[UIImage imageNamed:@"expand.png"] forState:UIControlStateNormal];
-        
-//        if ([selectedCellsArray containsObject:@"Check"]) {
-//            self.payBtn.hidden = NO;
-//        }
-//        else {
-//            self.payBtn.hidden = YES;
-//        }
-
+       
+        [checkBtn setHidden:NO];
+        [expandBtn setHidden:NO];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
     }
     
         
@@ -212,7 +209,7 @@
     selectallBtn.tag =section;
     selectallBtn.frame =CGRectMake(4, 7, 30, 30);
     [selectallBtn setBackgroundColor:[UIColor clearColor]];
-    if (isSelectedAll == NO) {
+    if (![sections containsObject:@(section).stringValue]) {
         [selectallBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
         [selectallBtn setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateHighlighted];
     }
@@ -256,8 +253,6 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
     {
         
@@ -281,6 +276,10 @@
     // No need to use tag sender will keep the reference of clicked button
     UIButton *button = (UIButton *)sender;
     
+    int row = (int)indexPath.row;
+    int section = (int) indexPath.section;
+    
+    NSLog(@"Row = %d : %d",row,section);
     //Checking the condition button is checked or unchecked.
     //accordingly replace the array object and change the button image
     data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:indexPath.section];
@@ -308,7 +307,12 @@
 {
     UIButton *button = (UIButton *)sender;
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint]; //Let's assume that you have only one section and button tags directly correspond to rows of your cells.
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+    int row = (int)indexPath.row;
+    int section = (int) indexPath.section;
+    
+    NSLog(@"Row = %d : %d",row,section);
+    //Let's assume that you have only one section and button tags directly correspond to rows of your cells.
     //expandedCells is a mutable set declared in your interface section or private class extensiont
     if([[[expandCellsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row ] isEqualToString:@"Expand"])
     {
@@ -338,10 +342,40 @@
     //button.hidden = YES;
     
    // NSInteger * tag =(NSInteger)[sender tag];
+   
+    
+    data1 = [[responseDict valueForKey:@"cases"]objectAtIndex:sender.tag];
+    data1 = [data1 valueForKey:@"procedures"];
+   // data1 = [data1 objectAtIndex:0];
+    
+    
+    
+    
+    
     
     if (isSelectedAll) {
         isSelectedAll = NO;
         [button setImage:[UIImage imageNamed:@"unchecked.png"] forState:UIControlStateNormal];
+        
+        for (int i=0; i<data1.count; i++) {
+            //
+            
+            if ([[data1 valueForKey:@"city"]objectAtIndex:i] != [NSNull null]) {
+                NSString * currentId = [[data1 valueForKey:@"id"]objectAtIndex:i];
+                if ([payIdsArray containsObject:currentId]) {
+                    [payIdsArray removeObject:currentId];
+                }
+                
+              //  NSLog(@"%@",[[data1 valueForKey:@"id"]objectAtIndex:i]);
+            }
+            
+            
+            
+        }
+
+        if ([sections containsObject:@(sender.tag).stringValue]) {
+            [sections removeObject:@(sender.tag).stringValue];
+        }
         
         NSMutableArray * uncheck = [[NSMutableArray alloc]initWithArray:[selectedCellsArray objectAtIndex:sender.tag]];
         for(int i=0; i<[uncheck count]; i++)
@@ -379,7 +413,27 @@
 //            
 //            
 //        }
-        
+
+        if (![sections containsObject:@(sender.tag).stringValue]) {
+            [sections addObject:@(sender.tag).stringValue];
+        }
+
+        for (int i=0; i<data1.count; i++) {
+            //
+            
+            if ([[data1 valueForKey:@"city"]objectAtIndex:i] != [NSNull null]) {
+                NSString * currentId = [[data1 valueForKey:@"id"]objectAtIndex:i];
+                if (![payIdsArray containsObject:currentId]) {
+                    [payIdsArray addObject:currentId];
+                }
+                
+                NSLog(@"%@",[[data1 valueForKey:@"id"]objectAtIndex:i]);
+            }
+            
+            
+            
+        }
+
         NSMutableArray * check = [[NSMutableArray alloc]initWithArray:[selectedCellsArray objectAtIndex:sender.tag]];
         for(int i=0; i<[check count]; i++)
         {
@@ -409,7 +463,7 @@
     //[self.tableView endUpdates];
     //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
     //
-    
+    [self showHidePayBtn];
 }
 
 - (IBAction)payBtnAction:(id)sender {
@@ -475,16 +529,16 @@
             
             [payIdsArray removeAllObjects];
             
-            for (int i = 0 ; i<selectedCellsArray.count-1; i++) {
-                
-                if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Check"])
-                {
-                    
-                    [selectedCellsArray replaceObjectAtIndex:i withObject:@"Uncheck"];
-                    
-                }
-                
-            }
+//            for (int i = 0 ; i<selectedCellsArray.count; i++) {
+//                
+//                if([[selectedCellsArray objectAtIndex:i] isEqualToString:@"Check"])
+//                {
+//                    
+//                    [selectedCellsArray replaceObjectAtIndex:i withObject:@"Uncheck"];
+//                    
+//                }
+//                
+//            }
             [self.tableView reloadData];
             self.payBtn.hidden = YES;
             

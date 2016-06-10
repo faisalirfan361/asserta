@@ -23,6 +23,7 @@
     User *data;
     NSMutableArray * data2;
     NSMutableArray * data1;
+    NSMutableArray * sections;
     UIView  *popup;
     int code;
     
