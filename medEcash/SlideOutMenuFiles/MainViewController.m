@@ -160,6 +160,12 @@
     // [data1 valueForKey:@"zip"]
     ((UILabel *)[cell viewWithTag:105]).text = [NSString stringWithFormat:@"%@ ,%@" ,[data1 valueForKey:@"zip"],[data1 valueForKey:@"phone"]];
     // handeling check uncheck buttons
+    
+    
+    //
+    
+    
+    
     return cell;
     
 
@@ -182,22 +188,25 @@
     
     UILabel * titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 12, 178, 48)];
     titleLabel.font = [UIFont fontWithName:@"DejaVuSans" size:17];
+    
+    UILabel * totalPrice = [[UILabel alloc]initWithFrame:CGRectMake(headerView.frame.size.width-70, 9, 63, 21)];
+    totalPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
+    totalPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
     titleLabel.text = [data1 valueForKey:@"case_name"];
-    UILabel * totalPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(193, 9, 53, 21)];
+    UILabel * totalPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(headerView.frame.size.width-130, 9, 53, 21)];
     totalPriceLbl.font = [UIFont fontWithName:@"DejaVuSans" size:10];
     totalPriceLbl.text = @"total cost";
     
-    UILabel * totalPrice = [[UILabel alloc]initWithFrame:CGRectMake(253, 9, 53, 21)];
-    totalPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
-    totalPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"total_cost"]];
     
-    UILabel * yourPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(194, 40, 51, 21)];
+    UILabel * yourPrice = [[UILabel alloc]initWithFrame:CGRectMake(headerView.frame.size.width-70, 40, 61, 21)];
+    yourPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
+    yourPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
+    
+    UILabel * yourPriceLbl = [[UILabel alloc]initWithFrame:CGRectMake(headerView.frame.size.width-130, 40, 51, 21)];
     yourPriceLbl.font = [UIFont fontWithName:@"DejaVuSans" size:10];
     yourPriceLbl.text = @"your cost";
     
-    UILabel * yourPrice = [[UILabel alloc]initWithFrame:CGRectMake(253, 40, 51, 21)];
-    yourPrice.font = [UIFont fontWithName:@"DejaVuSans" size:12];
-    yourPrice.text = [NSString stringWithFormat:@"$%@",[data1 valueForKey:@"your_cost"]];
+   
 
     
     UIView * selectallView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, tableView.frame.size.width, 47)];

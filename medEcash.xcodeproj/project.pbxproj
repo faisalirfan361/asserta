@@ -482,14 +482,14 @@
 			baseConfigurationReference = 6A1B9E256D22F5A968B1BBCB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kelly Phillipps (68B76YL3E3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kelly Phillipps (68B76YL3E3)";
 				INFOPLIST_FILE = medEcash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepro.medEcash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.asserta.medEcash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19838184-467c-4997-8858-7459aec21fe9";
+				PROVISIONING_PROFILE = "1ba86239-d285-4fb1-9a9c-325384faa48f";
 			};
 			name = Debug;
 		};
@@ -498,14 +498,14 @@
 			baseConfigurationReference = 94E848EAE860A44E5A223029 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Atiq Ur Rasheed (9NSRU3TPDN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kelly Phillipps (68B76YL3E3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kelly Phillipps (68B76YL3E3)";
 				INFOPLIST_FILE = medEcash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepro.medEcash;
+				PRODUCT_BUNDLE_IDENTIFIER = com.asserta.medEcash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19838184-467c-4997-8858-7459aec21fe9";
+				PROVISIONING_PROFILE = "1ba86239-d285-4fb1-9a9c-325384faa48f";
 			};
 			name = Release;
 		};
